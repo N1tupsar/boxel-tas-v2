@@ -82,7 +82,8 @@
     app.engine.detector.bodies = Matter.Composite.allBodies(app.engine.world).slice(0);
     const b = app.player.body; app.player.rotation.z = -b.angle;
     app.player.position.x = b.position.x; app.player.position.y = -b.position.y;
-    app.player.jumpReady = false; app.player.jumpBuffer = 0;
+    app.player.jumpReady = true; // the base game keeps jumpReady across restarts; theory mode starts WITH the jump available
+    app.player.jumpBuffer = 0;
     window.__log = [];
     console.log('[det] exact start state restored');
   });
