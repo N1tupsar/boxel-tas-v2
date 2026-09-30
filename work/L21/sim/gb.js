@@ -9,7 +9,7 @@ const GV=[[1,0],[0,-1],[-1,0],[0,1]];
 const root=new Sim(L); root.stage=0; root.hist=null;
 const FO=grids[4];
 const FW=+process.env.FW||0.3, SB=+process.env.SB||40;
-function score(s){const b=s.player.body; const k=s.stage; const g=grids[k%4]; const d=g.at(b.position.x,b.position.y); const fb=s.finishObjs[0].body; const fo=FO.at(fb.position.x,fb.position.y); return fo*FW - k*SB + d/Math.max(Math.hypot(b.velocity.x,b.velocity.y),TMIN);}
+function score(s){const b=s.player.body; const k=s.stage; const g=grids[process.env.ANY?(GV.findIndex(v=>v[0]===s.engine.gravity.x&&v[1]===s.engine.gravity.y)+1)%4:k%4]; const d=g.at(b.position.x,b.position.y); const fb=s.finishObjs[0].body; const fo=FO.at(fb.position.x,fb.position.y); return fo*FW - k*SB + d/Math.max(Math.hypot(b.velocity.x,b.velocity.y),TMIN);}
 function key(s){const b=s.player.body;return [s.stage,Math.round(b.position.x),Math.round(b.position.y),Math.round(b.velocity.x*4),Math.round(b.velocity.y*4),Math.round((((b.angle%1.5708)+1.5708)%1.5708)*10),s.player.jumpReady?1:0].join(',');}
 let beam=[root]; let best=null;
 for(let t=0;t<MAXT;t++){
@@ -22,7 +22,7 @@ for(let t=0;t<MAXT;t++){
       if(c.finished){const js=[];let h=c.hist;while(h){js.push(h.t);h=h.prev;} best={ticks:c.finishTick+1,jumps:js.reverse()}; break;}
       if(c.dead)continue;
       const g1=c.engine.gravity.x+','+c.engine.gravity.y;
-      if(g1!==g0){ const e=GV[c.stage%4]; if(c.engine.gravity.x===e[0]&&c.engine.gravity.y===e[1]) c.stage++; else continue; }
+      if(g1!==g0){ const e=GV[c.stage%4]; if(c.engine.gravity.x===e[0]&&c.engine.gravity.y===e[1]) c.stage++; else if(!process.env.ANY) continue; else c.stage++; }
       c.score=score(c); const kk=key(c); const p=kids.get(kk); if(!p||p.score>c.score)kids.set(kk,c);
     }
     if(best)break;

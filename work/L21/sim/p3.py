@@ -1,0 +1,6 @@
+s=open('gb.js').read()
+s=s.replace("else continue; }","else if(!process.env.ANY) continue; else c.stage++; }")
+s=s.replace("if(c.engine.gravity.x===e[0]&&c.engine.gravity.y===e[1]) c.stage++;","if(c.engine.gravity.x===e[0]&&c.engine.gravity.y===e[1]) c.stage++;")
+s=s.replace("const d=g.at(","const d=g.at(")
+s=s.replace("grids[k%4]","grids[process.env.ANY?(GV.findIndex(v=>v[0]===s.engine.gravity.x&&v[1]===s.engine.gravity.y)+1)%4:k%4]")
+open('gb.js','w').write(s)
