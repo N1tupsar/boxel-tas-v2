@@ -8,6 +8,7 @@ const WAYPOINTS = {
   13: [[-16, -40, 45], [-150, 130, 45], [-207, 66, 22]],
   9: [[1320, 40], [1376, 20], [1400, 140], [1200, 120], [700, 100], [300, 85]],
 };
+if(process.env.WP)WAYPOINTS[+process.argv[2]]=JSON.parse(process.env.WP);
 const WR = 40;
 
 function makeScorer(level, n, root, LA = 0) {
