@@ -9,10 +9,12 @@ const GV=[[1,0],[0,-1],[-1,0],[0,1]];
 const root=new Sim(L); root.stage=0; root.hist=null;
 const FO=grids[4];
 const FW=+process.env.FW||0.3, SB=+process.env.SB||40;
-function score(s){const b=s.player.body; const k=s.stage; const g=grids[process.env.ANY?(GV.findIndex(v=>v[0]===s.engine.gravity.x&&v[1]===s.engine.gravity.y)+1)%4:k%4]; const d=g.at(b.position.x,b.position.y); const fb=s.finishObjs[0].body; const fo=FO.at(fb.position.x,fb.position.y); return fo*FW - k*SB + d/Math.max(Math.hypot(b.velocity.x,b.velocity.y),TMIN);}
+function score(s){const b=s.player.body; const k=s.stage; const g=grids[process.env.ANY?(GV.findIndex(v=>v[0]===s.engine.gravity.x&&v[1]===s.engine.gravity.y)+1)%4:k%4]; const d=g.at(b.position.x,b.position.y); const fb=s.finishObjs[0].body; const fo=FO.at(fb.position.x,fb.position.y); if(fo<(+process.env.CHR||50)){const fv=fb.velocity; return fo*FW + Math.hypot(fb.position.x-b.position.x,fb.position.y-b.position.y)/Math.max(Math.hypot(b.velocity.x-fv.x,b.velocity.y-fv.y),TMIN);} return fo*FW - k*SB + d/Math.max(Math.hypot(b.velocity.x,b.velocity.y),TMIN);}
 function key(s){const b=s.player.body;return [s.stage,Math.round(b.position.x),Math.round(b.position.y),Math.round(b.velocity.x*4),Math.round(b.velocity.y*4),Math.round((((b.angle%1.5708)+1.5708)%1.5708)*10),s.player.jumpReady?1:0].join(',');}
+const T0=+process.env.T0||0; const PJ=new Set(process.env.T0?require('../../../results/L21.json').jumps.filter(t=>t<T0):[]);
+for(let t=0;t<T0;t++){const g0=root.engine.gravity.x+','+root.engine.gravity.y; root.step({jump:PJ.has(t)}); if(PJ.has(t))root.hist={t,prev:root.hist}; const g1=root.engine.gravity.x+','+root.engine.gravity.y; if(g0!==g1)root.stage++;}
 let beam=[root]; let best=null;
-for(let t=0;t<MAXT;t++){
+for(let t=T0;t<MAXT;t++){
   const kids=new Map();
   for(const s of beam){
     const acts=(s.player.jumpReady && t>=1)?[true,false]:[false];
