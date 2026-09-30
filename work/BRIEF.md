@@ -28,3 +28,5 @@ Real game keeps jumpReady across restarts: theory mode now starts every run WITH
 
 # TICK-0 JUMPS ARE LEGAL (supersedes the earlier tick-0 note)
 Leading "j0" in the TAS array = jump before step 0. sim/tas.js toTas/emulate support it; search tools allow t>=0 (copy the guard fixes from sim/: canJ t>=0, filter t>=0). Re-test "tick-0 jump" on every level incl. finished ones. L25 is now 106: ["j0",14,"j",49,"j",11,"j",15,"j"].
+
+# START TOKENS: "j0" (tick-0 jump) and "p0" (pre-touched start: restart while touching a sensor keeps the contact, so it does not re-trigger). Sim: opts.preTouch / env PRETOUCH=1 (only L25 among 1-30 spawns on a sensor: gravity block). tas.js: toTas(jumps,{p0:true}) emits leading "p0" (before "j0"); emulate handles both. Search both starts on such levels. L25 with p0: 45 frames.
