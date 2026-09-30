@@ -1,0 +1,2 @@
+s6 4 {"level":26,"fail":"all dead","t":503}
+s6 1000 
