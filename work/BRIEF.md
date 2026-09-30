@@ -18,3 +18,6 @@ No narration; final summaries <=3 lines; check jobs every 10 min (orchestrator 1
 3. Finish every level with a brute-force +-3-frame pass around every jump of the final route.
 4. Round 2 agents: re-test anything Round 1 marked "impossible" without forcing it.
 Applies retroactively to level 22 in its Round 2.
+
+# NEW MECHANIC: start-of-run jump
+Real game keeps jumpReady across restarts: theory mode now starts every run WITH the jump available (sim/boxel.js: new Sim has jumpReady=true; env STARTJUMP=0 or opts.startJump=false turns it off). Copy the new sim/boxel.js into your work/LN/sim (merge if you changed it; keep your snapshot code). Add "start jump" to every level's idea list and force-test: jump on frame 1 and at every frame before the first contact (and combinations with later jumps). Results obtained with the old start state must be re-checked. Finished levels get re-opened in Round 2 (incl. L22, which spawns mid-air next to the finish).
