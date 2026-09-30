@@ -8,7 +8,7 @@ const grid = buildGrid(new Sim(L));
 const score = s => { const b = s.player.body; return grid.at(b.position.x, b.position.y) / Math.max(Math.hypot(b.velocity.x, b.velocity.y), TMIN); };
 const key = s => { const b = s.player.body; return [Math.round(b.position.x), Math.round(b.position.y), Math.round(b.velocity.x * 4), Math.round(b.velocity.y * 4), Math.round((((b.angle % 1.5708) + 1.5708) % 1.5708) * 10), s.player.jumpReady ? 1 : 0].join(','); };
 root.hist = null; let beam = [root]; let best = null;
-for (let t = T0; t < T0 + 450; t++) {
+for (let t = T0; t < T0 + 900; t++) {
   const kids = new Map();
   for (const s of beam) {
     const acts = s.player.jumpReady ? [true, false] : [false];
