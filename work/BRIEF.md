@@ -21,3 +21,5 @@ Applies retroactively to level 22 in its Round 2.
 
 # NEW MECHANIC: start-of-run jump
 Real game keeps jumpReady across restarts: theory mode now starts every run WITH the jump available (sim/boxel.js: new Sim has jumpReady=true; env STARTJUMP=0 or opts.startJump=false turns it off). Copy the new sim/boxel.js into your work/LN/sim (merge if you changed it; keep your snapshot code). Add "start jump" to every level's idea list and force-test: jump on frame 1 and at every frame before the first contact (and combinations with later jumps). Results obtained with the old start state must be re-checked. Finished levels get re-opened in Round 2 (incl. L22, which spawns mid-air next to the finish).
+
+# SIM FIX (snap): sim/boxel.js now applies the patch's exact-cube corner snap after object creation (SNAP=0 disables); loadReset block stays a no-op (do not "fix" it). Copy the new sim/boxel.js into your work dir (keep your snapshot code; the snapshot must include the snapped vertices). Re-verify your route with `node work/verify.js` (emulates every results/L*.json from a fresh sim). Routes found before this fix may be invalid (L22's 134 fails under snap: L22 is re-opened).

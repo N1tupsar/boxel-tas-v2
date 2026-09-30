@@ -9,4 +9,4 @@ for (const k of Object.keys(base)) { if (!base[k]) continue;
   const s = new Sim(loadLevel(+k), { alpha: 0.5, loadReset: true }); const J = new Set(base[k]);
   while (!s.finished && !s.dead && s.tick < 6000) s.step({ jump: J.has(s.tick) });
   sum += (s.finished ? s.finishTick + 1 : 99999) * H[n % H.length]; n++; }
-console.log(sum === 5099546 ? `SELFTEST OK (${n} routes replayed exactly)` : 'SELFTEST MISMATCH - simulator differs, investigate before searching');
+console.log(sum === 5103347 ? `SELFTEST OK (${n} routes replayed exactly)` : 'SELFTEST MISMATCH - simulator differs, investigate before searching');

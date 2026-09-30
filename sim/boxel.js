@@ -66,6 +66,7 @@ class Sim {
     this.engine.gravity.x = 0; this.engine.gravity.y = 1;
     this.objects = [];
     this.tick = 0; this.finished = false; this.dead = false; this.finishTick = null;
+    // NOTE: this block runs before objects exist (a no-op); keep it that way - in-game tests match a start without it.
     // Level-load state as snapshotted by the deterministic patch: import, then resetScene -> resetToOrigin on every object.
     if (opts.loadReset !== undefined ? opts.loadReset : process.env.LOADRESET !== '0') {  // theory mode default
       for (const o of this.objects) {
@@ -86,6 +87,15 @@ class Sim {
       if (r.class === 'player') { this.player = o; o.mode = 'jump'; o.jumpReady = startReady; o.controls = { left: 0, right: 0, acceleration: .5, speed: 4 }; }
       if (+r.position.z === 0) Composite.add(this.engine.world, o.body);
       this.objects.push(o);
+    }
+    if (opts.snap !== undefined ? opts.snap : process.env.SNAP !== '0') {  // the patch's exact fresh-cube corner snap (after objects exist)
+      const pb = this.player.body;
+      if (Math.abs(pb.angle) < 1e-9) {
+        const hw = this.player.scale.x / 2, hh = this.player.scale.y / 2, c = pb.position;
+        for (const part of pb.parts) { for (const v of part.vertices) { v.x = (v.x < c.x ? -hw : hw) + c.x; v.y = (v.y < c.y ? -hh : hh) + c.y; } part.position.x = c.x; part.position.y = c.y; }
+        Body.scale(pb, 1, 1);
+      }
+      Body.setVelocity(pb, { x: 0, y: 0 }); Body.setAngularVelocity(pb, 0);
     }
     this.finishObjs = this.objects.filter(o => o.cls === 'finish');
     Matter.Events.on(this.engine, 'collisionStart', ev => this.onCollision(ev));
