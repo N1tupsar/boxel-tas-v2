@@ -47,7 +47,7 @@ function beam(level, n, { W = 300, maxTicks = 1500, timeLimitMs = 120000, log = 
     const kids = new Map();
     for (const s of beamS) {
       const P = s.player;
-      const canJ = t >= 1 && P.mode === 'jump' && P.jumpReady;
+      const canJ = t >= 0 && P.mode === 'jump' && P.jumpReady;
       const acts = canJ ? [true, false] : [false];
       for (let k = 0; k < acts.length; k++) {
         const c = k === acts.length - 1 ? s : cloneSim(s);
@@ -88,7 +88,7 @@ function refine(level, jumps, { timeLimitMs = 30000, robust = true, seed = 3, lo
   const cost = (j) => robust ? robustCost(level, j).cost : replay(level, j);
   let cur = [...jumps].sort((a, b) => a - b); let best = cost(cur);
   const t0 = Date.now(); let improved = true;
-  const tryC = (c) => { c = [...new Set(c)].filter(t => t >= 1).sort((a, b) => a - b); const v = cost(c); if (v < best || (v === best && c.length < cur.length)) { cur = c; best = v; improved = true; if (log) console.log('  ->', best); return true; } return false; };
+  const tryC = (c) => { c = [...new Set(c)].filter(t => t >= 0).sort((a, b) => a - b); const v = cost(c); if (v < best || (v === best && c.length < cur.length)) { cur = c; best = v; improved = true; if (log) console.log('  ->', best); return true; } return false; };
   while (improved && Date.now() - t0 < timeLimitMs) {
     improved = false;
     for (let i = cur.length - 1; i >= 0; i--) tryC(cur.filter((_, j) => j !== i));

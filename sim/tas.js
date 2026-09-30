@@ -5,8 +5,9 @@ const { Sim, loadLevel } = require('./boxel');
 function toTas(jumps) {
   const js = [...new Set(jumps)].sort((a, b) => a - b);
   const out = []; let last = 1; // frame 1 is the first frame inputs are consumed
+  if (js[0] === 0) { out.push('j0'); js.shift(); } // tick-0 jump: patch jumps right after restoring the start state
   js.forEach((t, i) => {
-    if (t < 1) throw new Error('jump at tick 0 impossible');
+    if (t < 1) throw new Error('negative jump tick');
     const wait = i === 0 ? t - 1 : t - last;
     if (wait > 0) out.push(wait);
     out.push('j'); last = t;
@@ -19,6 +20,7 @@ function emulate(level, inputs, maxTicks = 4000) {
   const temp = [...inputs];
   const s = new Sim(level);
   let pendingJump = false; const jumped = [];
+  if (temp[0] === 'j0') { temp.shift(); pendingJump = true; } // jump before step 0
   while (s.tick < maxTicks && !s.finished && !s.dead) {
     if (pendingJump) jumped.push(s.tick);
     s.step({ jump: pendingJump }); pendingJump = false;

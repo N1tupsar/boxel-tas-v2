@@ -25,3 +25,6 @@ Real game keeps jumpReady across restarts: theory mode now starts every run WITH
 # SIM FIX (snap): sim/boxel.js now applies the patch's exact-cube corner snap after object creation (SNAP=0 disables); loadReset block stays a no-op (do not "fix" it). Copy the new sim/boxel.js into your work dir (keep your snapshot code; the snapshot must include the snapped vertices). Re-verify your route with `node work/verify.js` (emulates every results/L*.json from a fresh sim). Routes found before this fix may be invalid (L22's 134 fails under snap: L22 is re-opened).
 
 # Note (A): a jump before sim step 0 is impossible (tas_mod.js consumes inputs only in the per-frame update, after step 0); earliest jump = tick 1. suffix.js/search allow t=0 unless restricted: ignore such results.
+
+# TICK-0 JUMPS ARE LEGAL (supersedes the earlier tick-0 note)
+Leading "j0" in the TAS array = jump before step 0. sim/tas.js toTas/emulate support it; search tools allow t>=0 (copy the guard fixes from sim/: canJ t>=0, filter t>=0). Re-test "tick-0 jump" on every level incl. finished ones. L25 is now 106: ["j0",14,"j",49,"j",11,"j",15,"j"].
