@@ -1,7 +1,7 @@
 // beam scored by progress along reference trajectory (A's route)
 const { Sim, loadLevel, cloneSim } = require('./boxel');
 const n=28, W=+process.argv[2], T0=+(process.argv[3]||0), R=+(process.argv[4]||30), LOOK=+(process.argv[5]||12);
-const L=loadLevel(n); const ref=require('../../../results/L28.json').jumps; const J=new Set(ref);
+const L=loadLevel(n); const ref=require(process.env.REF||'../../../results/L28.json').jumps; const J=new Set(ref);
 const rs=new Sim(L); const path=[];
 for(let t=0;t<700&&!rs.finished;t++){const b=rs.player.body;path.push([b.position.x,b.position.y]);rs.step({jump:J.has(t)});}
 const N=path.length;
