@@ -1,0 +1,11 @@
+{"fin":true,"ticks":590}
+{"fin":true,"ticks":599}
+{"fin":true,"ticks":585}
+{"fin":true,"ticks":592}
+{"fin":true,"ticks":585}
+{"fin":true,"ticks":590}
+{"fin":true,"ticks":585}
+{"fin":true,"ticks":591}
+{"fin":true,"ticks":585}
+{"fin":true,"ticks":585}
+{"fin":true,"ticks":585}
