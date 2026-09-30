@@ -62,12 +62,6 @@
       }
       Matter.Body.scale(pb, 1, 1);
     } else console.warn('[det] player spawns rotated; corner snapping skipped');
-    // Opening a level with click/Enter/Space is also a jump input, so a pending jump force can
-    // exist at snapshot time. A fresh level has none: clear forces and put the player at rest.
-    for (const body of Matter.Composite.allBodies(app.engine.world))
-      for (const part of body.parts) { part.force.x = 0; part.force.y = 0; part.torque = 0; }
-    Matter.Body.setVelocity(pb, { x: 0, y: 0 }); Matter.Body.setAngularVelocity(pb, 0);
-    app.player.jumpBuffer = 0;
     const snap = new Map();
     for (const body of Matter.Composite.allBodies(app.engine.world))
       snap.set(body, body.parts.map(snapPart));   // parts[0] is the body itself
@@ -88,8 +82,7 @@
     app.engine.detector.bodies = Matter.Composite.allBodies(app.engine.world).slice(0);
     const b = app.player.body; app.player.rotation.z = -b.angle;
     app.player.position.x = b.position.x; app.player.position.y = -b.position.y;
-    app.player.jumpReady = true; // the base game keeps jumpReady across restarts; theory mode starts WITH the jump available
-    app.player.jumpBuffer = 0;
+    app.player.jumpReady = false; app.player.jumpBuffer = 0;
     window.__log = [];
     console.log('[det] exact start state restored');
   });
