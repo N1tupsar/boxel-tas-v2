@@ -8,3 +8,6 @@ Write idea list to results/LN.md FIRST, then test every idea (record possible/im
 Final: results/LN.json = {"level":N,"frames":F,"jumps":[...],"tas":[...],"by":"A|B"} (emulate the tas array with sim/tas.js emulate from a fresh sim to confirm frames),
 results/LN.md with route, ideas tested, methods, untried items. Also note tips touched. Skip rate.js unless time remains.
 Stick to the wall-clock limit given (check `date`); stop and report then. Final reply: <=5 lines: level, frames, tips touched, best ideas, what's untried.
+
+# Budget mode (from user)
+No narration; final summaries <=3 lines; check jobs every 10 min (orchestrator 15-20); pipe output via tail -5/grep/head; don't re-read big files; batch commands; effort into search ideas.
