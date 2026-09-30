@@ -1,0 +1,5 @@
+s=open('gb.js').read()
+s=s.replace("function score(s){","const FO=grids[4];\nconst FW=+process.env.FW||0.3, SB=+process.env.SB||40;\nfunction score(s){")
+s=s.replace("return -k*1e4 + d/Math.max(Math.hypot(b.velocity.x,b.velocity.y),TMIN);","const fb=s.finishObjs[0].body; const fo=FO.at(fb.position.x,fb.position.y); return fo*FW - k*SB + d/Math.max(Math.hypot(b.velocity.x,b.velocity.y),TMIN);")
+s=s.replace("k>=12?grids[4]:grids[k%4]","grids[k%4]")
+open('gb.js','w').write(s)
