@@ -1,0 +1,2 @@
+const {Sim,loadLevel}=require('./boxel');const s=new Sim(loadLevel(22));const J=new Set(JSON.parse(process.argv[2]));
+while(!s.finished&&s.tick<400){s.step({jump:J.has(s.tick)});const b=s.player.body;if(s.tick%(+process.argv[3]||6)==0||J.has(s.tick-1))console.log(s.tick,b.position.x.toFixed(1),(-b.position.y).toFixed(1),b.velocity.x.toFixed(2),(-b.velocity.y).toFixed(2),b.angle.toFixed(2),J.has(s.tick-1)?'J':'')}
