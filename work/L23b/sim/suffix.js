@@ -11,7 +11,7 @@ root.hist = null; let beam = [root]; let best = null;
 for (let t = T0; t < T0 + 450; t++) {
   const kids = new Map();
   for (const s of beam) {
-    const acts = (s.player.jumpReady && t>=1) ? [true, false] : [false];
+    const acts = (s.player.jumpReady && t>=0) ? [true, false] : [false];
     for (let k = 0; k < acts.length; k++) {
       const c = k === acts.length - 1 ? s : cloneSim(s); c.step({ jump: acts[k] }); c.hist = acts[k] ? { t, prev: s.hist } : s.hist;
       if (c.finished) { const js = []; let h = c.hist; while (h) { js.push(h.t); h = h.prev; } best = { ticks: c.finishTick + 1, jumps: [...pre, ...js.reverse()] }; break; }

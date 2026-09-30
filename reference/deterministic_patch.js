@@ -19,6 +19,14 @@
     p.rotation.z = -(b.anglePrev + (b.angle - b.anglePrev) * ALPHA);
   });
 
+  // 1a) Tick-0 jump: a leading "j0" in loadInputs([...]) jumps immediately when the run starts,
+  //     before the first physics step (same as pressing jump in the same frame as restarting).
+  window.__j0 = false;
+  const origLoadInputs = window.loadInputs;
+  window.loadInputs = function (arr) {
+    window.__j0 = Array.isArray(arr) && arr[0] === 'j0';
+    return origLoadInputs(window.__j0 ? arr.slice(1) : arr);
+  };
   // 1b) The game permanently deletes any non-player object whose *rendered* y drops below -1000
   //     (render-timed, and never undone by restarting), so each attempt started with a different
   //     set of loose objects. Keep fallen objects in the world instead (they just keep falling).
@@ -91,6 +99,7 @@
     app.player.jumpReady = true; // the base game keeps jumpReady across restarts; theory mode starts WITH the jump available
     app.player.jumpBuffer = 0;
     window.__log = [];
+    if (window.__j0) { app.player.jump(); console.log('[det] tick-0 jump'); }
     console.log('[det] exact start state restored');
   });
 

@@ -20,7 +20,7 @@ let beam = [{ sims: initSims, hist: preHist, wp: 0 }]; const t0 = Date.now();
 for (let t = startT; t < 1500; t++) {
   const kids = new Map();
   for (const node of beam) {
-    const canJ = t >= 1 && node.sims.every(s => s.player.jumpReady && !s.finished && !s.dead);
+    const canJ = t >= 0 && node.sims.every(s => s.player.jumpReady && !s.finished && !s.dead);
     const acts = canJ ? [true, false] : [false];
     for (let k = 0; k < acts.length; k++) {
       const sims = k === acts.length - 1 ? node.sims : node.sims.map(cloneSim);
