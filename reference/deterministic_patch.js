@@ -62,10 +62,12 @@
       }
       Matter.Body.scale(pb, 1, 1);
     } else console.warn('[det] player spawns rotated; corner snapping skipped');
-    // Drop any pending jump force from the click/Enter that opened the level: zero all forces/torques
-    // and the player's velocity so the snapshot is taken at rest.
-    for (const body of Matter.Composite.allBodies(app.engine.world)) { body.force.x = 0; body.force.y = 0; body.torque = 0; }
+    // Opening a level with click/Enter/Space is also a jump input, so a pending jump force can
+    // exist at snapshot time. A fresh level has none: clear forces and put the player at rest.
+    for (const body of Matter.Composite.allBodies(app.engine.world))
+      for (const part of body.parts) { part.force.x = 0; part.force.y = 0; part.torque = 0; }
     Matter.Body.setVelocity(pb, { x: 0, y: 0 }); Matter.Body.setAngularVelocity(pb, 0);
+    app.player.jumpBuffer = 0;
     const snap = new Map();
     for (const body of Matter.Composite.allBodies(app.engine.world))
       snap.set(body, body.parts.map(snapPart));   // parts[0] is the body itself

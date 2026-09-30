@@ -1,0 +1,6 @@
+ t 0 best 3845 wp 0 pos -32 -48 v 0.00 -0.28 0s
+ t 60 best 141 wp 0 pos 47 -28 v 1.88 6.67 5s
+ t 120 best 106 wp 0 pos -44 200 v -6.67 2.44 13s
+ t 180 best 87 wp 0 pos 157 314 v 6.67 4.13 20s
+ t 240 best 36 wp 0 pos -69 562 v -12.22 4.13 24s
+ t 300 best 40 wp 0 pos -180 808 v -16.11 4.13 30s
