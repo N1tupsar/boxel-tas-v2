@@ -2,12 +2,14 @@ const { Sim, loadLevel, cloneSim } = require('./boxel');
 const { buildGrid } = require('./search');
 
 // Waypoints in GAME coords (y up). Converted to Matter coords (y down).
-const WAYPOINTS = {
+const WAYPOINTS_OLD = {
   6: [[568, -110], [1150, -70, 22], [1300, -70, 22], [1640, -50], [1655, 150], [1450, 215], [900, 215], [300, 215], [0, 215], [-88, 60]],
   26: [[1136, 140, 40], [48, 332, 45], [1136, 522, 45], [1076, 720, 40], [1076, 1000, 40]],
   13: [[-16, -40, 45], [-150, 130, 45], [-207, 66, 22]],
   9: [[1320, 40], [1376, 20], [1400, 140], [1200, 120], [700, 100], [300, 85]],
 };
+// Old hard-coded waypoints (levels 6,9,13,26) forced routes; disabled by default. Set USE_OLD_WP=1 to enable.
+const WAYPOINTS = process.env.USE_OLD_WP === '1' ? WAYPOINTS_OLD : {};
 const WR = 40;
 
 function makeScorer(level, n, root, LA = 0) {
