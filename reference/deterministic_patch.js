@@ -56,8 +56,14 @@
     cat: p.collisionFilter.category, mask: p.collisionFilter.mask, sleep: p.isSleeping,
   });
   const restorePart = (p, s) => {
-    s.v.forEach((q, i) => { p.vertices[i].x = q[0]; p.vertices[i].y = q[1]; });
-    s.ax.forEach((a, i) => { p.axes[i].x = a[0]; p.axes[i].y = a[1]; });
+    // Vertex/axis counts can differ from the snapshot (Matter dedupes axes, bodies get re-shaped):
+    // rebuild the arrays in that case instead of writing into missing entries.
+    if (p.vertices.length !== s.v.length) {
+      console.warn('[det] vertex count changed', p.label, p.vertices.length, '->', s.v.length);
+      p.vertices = Matter.Vertices.create(s.v.map(q => ({ x: q[0], y: q[1] })), p);
+    } else s.v.forEach((q, i) => { p.vertices[i].x = q[0]; p.vertices[i].y = q[1]; });
+    if (p.axes.length !== s.ax.length) p.axes = s.ax.map(a => ({ x: a[0], y: a[1] }));
+    else s.ax.forEach((a, i) => { p.axes[i].x = a[0]; p.axes[i].y = a[1]; });
     p.bounds.min.x = s.bd[0]; p.bounds.min.y = s.bd[1]; p.bounds.max.x = s.bd[2]; p.bounds.max.y = s.bd[3];
     VEC.forEach((k, i) => { if (s.vec[i] && p[k]) { p[k].x = s.vec[i][0]; p[k].y = s.vec[i][1]; } });
     NUM.forEach((k, i) => { if (s.num[i] !== undefined) p[k] = s.num[i]; });
@@ -103,7 +109,10 @@
   app.player.updateControls = function (...args) {
     if (pendingStart) {
       pendingStart = false;
-      for (const [body, parts] of window.__detSnap) body.parts.forEach((p, i) => parts[i] && restorePart(p, parts[i]));
+      for (const [body, parts] of window.__detSnap) {
+        try { body.parts.forEach((p, i) => parts[i] && restorePart(p, parts[i])); }
+        catch (err) { console.warn('[det] restore failed for', body.label, body.class, err); }
+      }
       const P = app.engine.pairs;
       P.table = {}; P.list.length = 0; P.collisionStart.length = 0; P.collisionActive.length = 0; P.collisionEnd.length = 0;
       // Matter's broadphase keeps its body list sorted between steps; ties keep the previous order,
