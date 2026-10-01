@@ -1,6 +1,6 @@
 const {Sim,loadLevel}=require('./boxel');const fs=require('fs');const L=loadLevel(14);
 const out='../../../results/L14.json';let cur=JSON.parse(fs.readFileSync(out)).jumps;
-function cost(j){const J=new Set(j);const s=new Sim(L);while(s.tick<cur_best+20&&!s.finished&&!s.dead)s.step({jump:J.has(s.tick)});return s.finished?s.finishTick+1:1e9;}
+function cost(j){const J=new Set(j);const s=new Sim(L);while(s.tick<cur_best+20&&!s.finished&&!s.dead)s.step({jump:J.has(s.tick)});return s.finished&&!s.dead?s.finishTick+1:1e9;}
 let cur_best=1e9;cur_best=cost(cur);console.log('start',cur_best);
 let imp=true;
 while(imp){imp=false;

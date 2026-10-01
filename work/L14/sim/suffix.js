@@ -14,7 +14,7 @@ for (let t = T0; t < T0 + 450; t++) {
     const acts = s.player.jumpReady ? [true, false] : [false];
     for (let k = 0; k < acts.length; k++) {
       const c = k === acts.length - 1 ? s : cloneSim(s); c.step({ jump: acts[k] }); c.hist = acts[k] ? { t, prev: s.hist } : s.hist;
-      if (c.finished) { const js = []; let h = c.hist; while (h) { js.push(h.t); h = h.prev; } best = { ticks: c.finishTick + 1, jumps: [...pre, ...js.reverse()] }; break; }
+      if (c.finished && !c.dead) { const js = []; let h = c.hist; while (h) { js.push(h.t); h = h.prev; } best = { ticks: c.finishTick + 1, jumps: [...pre, ...js.reverse()] }; break; }
       if (c.dead) continue; c.score = score(c); const kk = key(c); const p = kids.get(kk); if (!p || p.score > c.score) kids.set(kk, c);
     }
     if (best) break;

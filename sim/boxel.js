@@ -215,6 +215,7 @@ class Sim {
     Engine.update(this.engine, DT);
     this.tick++;
     if (b.position.y > 1000) this.kill('fell');
+    if (this.finished && this.dead) { this.finished = false; this.finishTick = null; }  // conservative: a finish in a death frame is not a valid finish
   }
   state() { const b = this.player.body; return { x: b.position.x, y: -b.position.y, vx: b.velocity.x, vy: -b.velocity.y, a: b.angle, ready: this.player.jumpReady }; }
 }

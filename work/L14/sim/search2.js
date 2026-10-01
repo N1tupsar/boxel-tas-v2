@@ -56,7 +56,7 @@ function beam(level, n, { W = 300, maxTicks = 1500, timeLimitMs = 120000, log = 
         c.wp = s.wp;
         c.step({ jump: acts[k] });
         c.hist = acts[k] ? { t, prev: s.hist } : s.hist;
-        if (c.finished) { best = { ticks: c.finishTick + 1, jumps: histList(c.hist) }; return best; }
+        if (c.finished && !c.dead) { best = { ticks: c.finishTick + 1, jumps: histList(c.hist) }; return best; }
         if (c.dead) continue;
         c.score = score(c);
         const key = keyOf(c); const pr = kids.get(key);
