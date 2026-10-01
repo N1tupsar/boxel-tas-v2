@@ -2,11 +2,12 @@ const { Sim, loadLevel } = require('./boxel');
 
 // jump ticks (sim step index where jump is applied before the step) -> TAS array
 // TAS frame F (F-th afterUpdate after pressing t) applies before step F.
-function toTas(jumps) {
+function toTas(jumps, opts = {}) {
   const js = [...new Set(jumps)].sort((a, b) => a - b);
-  const out = []; let last = 1; // frame 1 is the first frame inputs are consumed
+  const out = opts.p0 ? ['p0'] : []; let last = 1; // frame 1 is the first frame inputs are consumed
+  if (js[0] === 0) { out.push('j0'); js.shift(); } // tick-0 jump: patch jumps right after restoring the start state
   js.forEach((t, i) => {
-    if (t < 1) throw new Error('jump at tick 0 impossible');
+    if (t < 1) throw new Error('negative jump tick');
     const wait = i === 0 ? t - 1 : t - last;
     if (wait > 0) out.push(wait);
     out.push('j'); last = t;
@@ -17,8 +18,10 @@ function toTas(jumps) {
 // Faithful copy of the TAS mod's consumeInputs (jump-only subset)
 function emulate(level, inputs, maxTicks = 4000) {
   const temp = [...inputs];
-  const s = new Sim(level);
+  const pre = temp[0] === 'p0'; if (pre) temp.shift(); // pre-touched start
+  const s = new Sim(level, pre ? { preTouch: true } : {});
   let pendingJump = false; const jumped = [];
+  if (temp[0] === 'j0') { temp.shift(); pendingJump = true; } // jump before step 0
   while (s.tick < maxTicks && !s.finished && !s.dead) {
     if (pendingJump) jumped.push(s.tick);
     s.step({ jump: pendingJump }); pendingJump = false;

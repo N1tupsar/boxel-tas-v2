@@ -19,6 +19,22 @@
     p.rotation.z = -(b.anglePrev + (b.angle - b.anglePrev) * ALPHA);
   });
 
+  // 1a) Tick-0 jump: a leading "j0" in loadInputs([...]) jumps immediately when the run starts,
+  //     before the first physics step (same as pressing jump in the same frame as restarting).
+  //     A leading "p0" = "pre-touched" start: sensor blocks the player overlaps at spawn don't
+  //     trigger on the first step (like restarting while already standing on them). Tokens may be
+  //     combined in any order, e.g. ["p0","j0", ...].
+  window.__j0 = false; window.__p0 = false;
+  const origLoadInputs = window.loadInputs;
+  window.loadInputs = function (arr) {
+    arr = Array.isArray(arr) ? [...arr] : arr;
+    window.__j0 = false; window.__p0 = false;
+    while (Array.isArray(arr) && (arr[0] === 'j0' || arr[0] === 'p0')) { if (arr[0] === 'j0') window.__j0 = true; else window.__p0 = true; arr.shift(); }
+    return origLoadInputs(arr);
+  };
+  let __muted = [];
+  addUpdateFunction(() => { for (const [b, cls] of __muted) b.class = cls; __muted = []; });  // unmute after step 0
+
   // 1b) The game permanently deletes any non-player object whose *rendered* y drops below -1000
   //     (render-timed, and never undone by restarting), so each attempt started with a different
   //     set of loose objects. Keep fallen objects in the world instead (they just keep falling).
@@ -62,6 +78,13 @@
       }
       Matter.Body.scale(pb, 1, 1);
     } else console.warn('[det] player spawns rotated; corner snapping skipped');
+    // Opening a level with a click/Enter/Space is also a jump input, so the player can already
+    // have a pending jump force (and changed velocity) at this instant. A fresh level has none:
+    // clear every pending force/torque and put the player exactly at rest before snapshotting.
+    for (const body of Matter.Composite.allBodies(app.engine.world))
+      for (const part of body.parts) { part.force.x = 0; part.force.y = 0; part.torque = 0; }
+    Matter.Body.setVelocity(pb, { x: 0, y: 0 }); Matter.Body.setAngularVelocity(pb, 0);
+    app.player.jumpBuffer = 0;
     const snap = new Map();
     for (const body of Matter.Composite.allBodies(app.engine.world))
       snap.set(body, body.parts.map(snapPart));   // parts[0] is the body itself
@@ -69,23 +92,42 @@
     console.log('[det] snapshot of', snap.size, 'bodies taken');
   });
 
-  // 3) On "t" (after the TAS mod's own handler has run retryLevel): restore the snapshot,
-  //    clear Matter's collision-pair cache, reset the calibration log.
   window.__log = [];
-  window.addEventListener('keydown', (e) => {
-    if (e.key !== 't' || !window.__detSnap) return;
-    for (const [body, parts] of window.__detSnap) body.parts.forEach((p, i) => parts[i] && restorePart(p, parts[i]));
-    const P = app.engine.pairs;
-    P.table = {}; P.list.length = 0; P.collisionStart.length = 0; P.collisionActive.length = 0; P.collisionEnd.length = 0;
-    // Matter's broadphase keeps its body list sorted between steps; ties keep the previous order,
-    // so that order carried history across attempts. Reset it to world order (as on a fresh level).
-    app.engine.detector.bodies = Matter.Composite.allBodies(app.engine.world).slice(0);
-    const b = app.player.body; app.player.rotation.z = -b.angle;
-    app.player.position.x = b.position.x; app.player.position.y = -b.position.y;
-    app.player.jumpReady = false; app.player.jumpBuffer = 0;
-    window.__log = [];
-    console.log('[det] exact start state restored');
-  });
+  // 3) On "t": only flag a pending start. The actual restore (+ optional tick-0 jump) happens at
+  //    the very start of the next physics step (inside player.updateControls, which the game calls
+  //    right before Engine.update), i.e. after every keydown handler, including the TAS mod's
+  //    retryLevel (which resets gravity), has finished. This makes it independent of listener order.
+  let pendingStart = false;
+  window.addEventListener('keydown', (e) => { if (e.key === 't' && window.__detSnap) pendingStart = true; });
+  const origUpdateControls = app.player.updateControls.bind(app.player);
+  app.player.updateControls = function (...args) {
+    if (pendingStart) {
+      pendingStart = false;
+      for (const [body, parts] of window.__detSnap) body.parts.forEach((p, i) => parts[i] && restorePart(p, parts[i]));
+      const P = app.engine.pairs;
+      P.table = {}; P.list.length = 0; P.collisionStart.length = 0; P.collisionActive.length = 0; P.collisionEnd.length = 0;
+      // Matter's broadphase keeps its body list sorted between steps; ties keep the previous order,
+      // so that order carried history across attempts. Reset it to world order (as on a fresh level).
+      app.engine.detector.bodies = Matter.Composite.allBodies(app.engine.world).slice(0);
+      const b = app.player.body; app.player.rotation.z = -b.angle;
+      app.player.position.x = b.position.x; app.player.position.y = -b.position.y;
+      // The base game keeps jumpReady across restarts (touch the ground, then restart -> a jump is
+      // available from frame 1). Theory mode always starts WITH the jump available.
+      app.player.jumpReady = true; app.player.jumpBuffer = 0;
+      window.__log = [];
+      if (window.__p0) {  // mute effects of sensors already overlapping the player (pairs still form)
+        const pbb = b.bounds;
+        for (const o of Matter.Composite.allBodies(app.engine.world)) {
+          if (o === b || !o.parts.some(q => q.isSensor)) continue;
+          if (o.bounds.min.x <= pbb.max.x && o.bounds.max.x >= pbb.min.x && o.bounds.min.y <= pbb.max.y && o.bounds.max.y >= pbb.min.y) { __muted.push([o, o.class]); o.class = 'muted'; }
+        }
+        console.log('[det] pre-touched start, muted', __muted.length, 'sensor(s)');
+      }
+      if (window.__j0) { app.player.jump(); console.log('[det] tick-0 jump'); }
+      console.log('[det] exact start state restored');
+    }
+    return origUpdateControls(...args);
+  };
 
   // Calibration log: exact player state after each physics step (whole run, up to LOGN frames).
   // After a run:  copy(JSON.stringify(__log))  and paste it to the simulator side.

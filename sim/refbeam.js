@@ -35,7 +35,7 @@ function refBeam(level, refJumps, { W = 800, D = 90, VS = 5, VW = 2, timeLimitMs
   for (let t = 0; t < N + 5; t++) {
     const kids = new Map();
     for (const s of beam) {
-      const canJ = t >= 1 && s.player.mode === 'jump' && s.player.jumpReady;
+      const canJ = t >= 0 && s.player.mode === 'jump' && s.player.jumpReady;
       const acts = canJ ? [true, false] : [false];
       for (let k = 0; k < acts.length; k++) {
         const c = k === acts.length - 1 ? s : cloneSim(s);
