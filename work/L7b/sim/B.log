@@ -1,0 +1,9 @@
+ge11 FOUND 602 verified 602 [4,75,1
+ge11 refprog 800 0 25 12 -> {"fin":true,"ticks":322} 
+ge11 refprog 800 0 15 20 -> {"fin":true,"ticks":323} 
+ge12 FOUND 442 verified 442 [3,67,1
+ge12 refprog 800 0 25 12 -> {"fin":true,"ticks":279} 
+ge12 refprog 800 0 15 20 -> {"fin":true,"ticks":277} 
+ge13 FOUND 544 verified 544 [0,68,1
+ge13 refprog 800 0 25 12 -> {"fin":true,"ticks":449} 
+ge13 refprog 800 0 15 20 -> {"fin":true,"ticks":471} 

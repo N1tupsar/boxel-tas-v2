@@ -1,0 +1,25 @@
+{"fin":true,"ticks":278}
+{"fin":true,"ticks":276}
+{"fin":true,"ticks":259}
+saved 259
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":278}
+{"fin":true,"ticks":276}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}
+{"fin":true,"ticks":259}

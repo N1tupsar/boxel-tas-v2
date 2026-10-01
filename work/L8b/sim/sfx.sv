@@ -1,0 +1,10 @@
+{"fin":true,"ticks":346}
+{"fin":true,"ticks":346}
+{"fin":true,"ticks":346}
+{"fin":true,"ticks":346}
+{"fin":true,"ticks":346}
+{"fin":true,"ticks":346}
+{"fin":true,"ticks":346}
+{"fin":true,"ticks":346}
+{"fin":true,"ticks":346}
+{"fin":true,"ticks":346}

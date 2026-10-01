@@ -1,3 +1,9 @@
 ge11 FOUND 261 verified 261 [39,86,
 ge11 refprog 800 0 25 12 -> {"fin":true,"ticks":265} saved 265 
 ge11 refprog 800 0 15 20 -> {"fin":true,"ticks":265} 
+ge12 FOUND 269 verified 269 [39,86,
+ge12 refprog 800 0 25 12 -> {"fin":true,"ticks":262} 
+ge12 refprog 800 0 15 20 -> {"fin":true,"ticks":263} 
+ge13 FOUND 269 verified 269 [4,84,1
+ge13 refprog 800 0 25 12 -> {"fin":true,"ticks":264} 
+ge13 refprog 800 0 15 20 -> {"fin":true,"ticks":263} 
