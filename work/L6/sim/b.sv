@@ -20,3 +20,11 @@ saved 236
 {"fin":true,"ticks":236}
 {"fin":true,"ticks":236}
 {"fin":true,"ticks":236}
+{"fin":true,"ticks":278}
+{"fin":true,"ticks":267}
+{"fin":true,"ticks":247}
+{"fin":true,"ticks":252}
+{"fin":true,"ticks":247}
+{"fin":true,"ticks":252}
+{"fin":true,"ticks":247}
+{"fin":true,"ticks":252}
