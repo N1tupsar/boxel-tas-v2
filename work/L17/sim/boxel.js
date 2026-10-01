@@ -109,11 +109,11 @@ class Sim {
   log(m) { this.events.push([this.tick, m]); }
   onCollision(ev) {
     const P = this.player;
-    for (const pair of ev.pairs) {
+    for (const pair of (process.env.VAR === 'revpairs' ? [...ev.pairs].reverse() : ev.pairs)) {
       if (this.tick === 0 && this.preTouch && (this.preTouch.has(pair.bodyA.parent) || this.preTouch.has(pair.bodyB.parent))) continue;
       const parts = [pair.bodyA, pair.bodyB];
-      for (let a = 0; a < 2; a++) {
-        const o = parts[a], s = parts[(a + 1) % 2];
+      for (let a0 = 0; a0 < 2; a0++) {
+        const a = process.env.VAR === 'rev' ? 1 - a0 : a0; const o = parts[a], s = parts[(a + 1) % 2];
         const c = o.parent.object3D, l = s.parent.object3D;
         if (!c || !l) continue;
         if (c.body.class === 'player') P.jumpReady = true;
@@ -121,7 +121,8 @@ class Sim {
         if (o.class !== 'sensor') continue;
         const k = c.body.class, isP = l.body.class === 'player';
         if (k === 'tip') { if (isP) c.hide(); }
-        else if (k === 'bounce') { const u = c.scale.y / 2; if (!c.body.isStatic) c.setForce(u, l, true); if (!l.body.isStatic) l.setForce(u, c); if (isP) this.log('bounce'); }
+        else if (k === 'bounce') { const u = c.scale.y / 2; { const V = process.env.VAR || ''; const A = () => { if (!c.body.isStatic) c.setForce(u, l, true); }, B = () => { if (!l.body.isStatic) l.setForce(u, c); };
+          if (V === 'noB') A(); else if (V === 'noA') B(); else if (V === 'swap') { B(); A(); } else { A(); B(); } } if (isP) this.log('bounce'); }
         else if (k === 'checkpoint') { if (isP) { P.checkpoint = { ...c.position }; this.log('checkpoint'); } }
         else if (k === 'spike') { if (isP) this.kill('spike'); }
         else if (k === 'resize') { if (!l.body.isStatic) { l.setScale(c.scale); if (isP) this.log('resize ' + c.scale.x); } }
