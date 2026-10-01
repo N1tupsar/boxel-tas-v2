@@ -34,3 +34,7 @@ Leading "j0" in the TAS array = jump before step 0. sim/tas.js toTas/emulate sup
 # WARNING: sim/search2.js had hard-coded WAYPOINTS for levels 6,9,13,26 that FORCE routes. Disabled by default now (USE_OLD_WP=1 re-enables). Check your own copy of search2.js for forced waypoints before trusting results (L9/L13 especially).
 
 # WARNING: tools could accept 'finished and dead' (spike+finish same frame). sim/boxel.js step() now clears finished when dead (conservative). Copy it; verify.js now flags dead/mismatch.
+
+# PRIORITY (user): MUST-BEAT levels vs other TASers / human WRs (in-game seconds = (frames-1.5)/60)
+Targets (frames must be below): L3 <322.5 (now 328) · L4 <258.5 (259) · L6 <234.5 (236) · L9 <340.5 (337 ok, push more) · L22 <127.8 (134) · L24 <231.5 (255) · L28 <364.5 (473; adam 6.05s, WR 6.968).
+These mean a whole route shape/glitch was missed: re-brainstorm from scratch (different basin/region/trick), don't polish. Human WR runs may use glitches: find them. Don't pursue p0 on L25 (stays 106).
