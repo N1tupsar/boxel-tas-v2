@@ -1,0 +1,9 @@
+500 45 26 17 -> <anonymous_script>:1 undefined ^  SyntaxError: "undefined" is not valid JSON     at JSON.parse (<anonymous>)     at Object.<anonymous> (/home/user/boxel-tas-v2/work/L28c/sim/sv.js:2:18)     at Module._compile (node:internal/modules/cjs/loader:1705:14)     at Object..js (node:internal/modules/cjs/loader:1838:10)     at Module.load (node:internal/modules/cjs/loader:1441:32)     at Function._load (node:internal/modules/cjs/loader:1263:12)     at TracingChannel.traceSync (node:diagnostics_channel:328:14)     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)     at node:internal/main/run_main_module:36:49  Node.js v22.22.2 
+600 30 20 12 -> {"fin":true,"ticks":505} 
+500 30 19 19 -> {"fin":true,"ticks":527} 
+700 60 30 8 -> {"fin":true,"ticks":577} 
+600 45 20 23 -> {"fin":true,"ticks":504} 
+500 45 28 19 -> {"fin":true,"ticks":547} 
+900 60 26 13 -> {"fin":true,"ticks":517} 
+700 60 38 13 -> {"fin":true,"ticks":557} 
+600 45 39 10 -> <anonymous_script>:1 undefined ^  SyntaxError: "undefined" is not valid JSON     at JSON.parse (<anonymous>)     at Object.<anonymous> (/home/user/boxel-tas-v2/work/L28c/sim/sv.js:2:18)     at Module._compile (node:internal/modules/cjs/loader:1705:14)     at Object..js (node:internal/modules/cjs/loader:1838:10)     at Module.load (node:internal/modules/cjs/loader:1441:32)     at Function._load (node:internal/modules/cjs/loader:1263:12)     at TracingChannel.traceSync (node:diagnostics_channel:328:14)     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)     at node:internal/main/run_main_module:36:49  Node.js v22.22.2 
