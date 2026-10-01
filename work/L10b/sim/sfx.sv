@@ -4,3 +4,7 @@
 {"fin":true,"ticks":176}
 {"fin":true,"ticks":176}
 {"fin":true,"ticks":176}
+{"fin":true,"ticks":200}
+{"fin":true,"ticks":192}
+{"fin":true,"ticks":145}
+{"fin":true,"ticks":145}
