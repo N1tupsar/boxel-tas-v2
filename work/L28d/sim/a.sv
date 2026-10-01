@@ -1,0 +1,19 @@
+{"fin":true,"ticks":375}
+{"fin":true,"ticks":366}
+{"fin":true,"ticks":355}
+saved 355
+{"fin":true,"ticks":354}
+{"fin":true,"ticks":358}
+{"fin":true,"ticks":354}
+{"fin":true,"ticks":354}
+{"fin":true,"ticks":354}
+{"fin":true,"ticks":375}
+{"fin":true,"ticks":363}
+{"fin":true,"ticks":355}
+{"fin":true,"ticks":364}
+{"fin":true,"ticks":355}
+{"fin":true,"ticks":354}
+{"fin":true,"ticks":355}
+{"fin":true,"ticks":354}
+{"fin":true,"ticks":354}
+{"fin":true,"ticks":354}

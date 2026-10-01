@@ -1,0 +1,2 @@
+gap TM4 :: {"level":24,"W":800,"TMIN":4,"alphas":[0.5],"ticks":255,"jumps":[101,180,204,222,240,250]}
+gap TM1000 :: {"level":24,"fail":"timeout","t":201}

@@ -1,1 +1,19 @@
 ge21 none
+ge51 FOUND 413 verified 413 [13,74,
+ge51 refprog 800 0 25 12 -> {"fin":true,"ticks":261} 
+ge51 refprog 800 0 15 20 -> <anonymous_script>:1 undefined ^  SyntaxError: "undefined" is not valid JSON     at JSON.parse (<anonymous>)     at Object.<anonymous> (/home/user/boxel-tas-v2/work/L24d/sim/sv.js:2:18)     at Module._compile (node:internal/modules/cjs/loader:1705:14)     at Object..js (node:internal/modules/cjs/loader:1838:10)     at Module.load (node:internal/modules/cjs/loader:1441:32)     at Function._load (node:internal/modules/cjs/loader:1263:12)     at TracingChannel.traceSync (node:diagnostics_channel:328:14)     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)     at node:internal/main/run_main_module:36:49  Node.js v22.22.2 
+ge51 refprog 800 0 30 15 -> {"fin":true,"ticks":295} 
+ge52 none
+ge53 FOUND 367 verified 367 [0,72,8
+ge53 refprog 800 0 25 12 -> <anonymous_script>:1 undefined ^  SyntaxError: "undefined" is not valid JSON     at JSON.parse (<anonymous>)     at Object.<anonymous> (/home/user/boxel-tas-v2/work/L24d/sim/sv.js:2:18)     at Module._compile (node:internal/modules/cjs/loader:1705:14)     at Object..js (node:internal/modules/cjs/loader:1838:10)     at Module.load (node:internal/modules/cjs/loader:1441:32)     at Function._load (node:internal/modules/cjs/loader:1263:12)     at TracingChannel.traceSync (node:diagnostics_channel:328:14)     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)     at node:internal/main/run_main_module:36:49  Node.js v22.22.2 
+ge53 refprog 800 0 15 20 -> {"fin":true,"ticks":369} 
+ge53 refprog 800 0 30 15 -> {"fin":true,"ticks":364} 
+ge54 FOUND 388 verified 388 [8,62,1
+ge54 refprog 800 0 25 12 -> {"fin":true,"ticks":198} saved 198 
+ge54 refprog 800 0 15 20 -> {"fin":true,"ticks":198} 
+ge64 none
+ge61 none
+ge65 none
+ge62 none
+ge66 none
+ge63 none

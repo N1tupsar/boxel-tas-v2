@@ -2,3 +2,70 @@ ge41 FOUND 197 verified 197 [6,25,4
 ge31 FOUND 167 verified 167 [10,34,
 ge31 refprog 800 0 25 12 -> {"fin":true,"ticks":129} saved 129 
 ge41 refprog 800 0 25 12 -> {"fin":true,"ticks":203} 
+ge31 refprog 800 0 15 20 -> {"fin":true,"ticks":141} 
+ge41 refprog 800 0 15 20 -> {"fin":true,"ticks":210} 
+ge31 refprog 800 0 30 15 -> {"fin":true,"ticks":129} 
+ge41 refprog 800 0 30 15 -> {"fin":true,"ticks":219} 
+ge32 FOUND 141 verified 141 [0,13,1
+ge42 FOUND 142 verified 142 [5,19,2
+ge42 refprog 800 0 25 12 -> {"fin":true,"ticks":129} 
+ge42 refprog 800 0 15 20 -> {"fin":true,"ticks":129} 
+ge42 refprog 800 0 30 15 -> {"fin":true,"ticks":129} 
+ge32 refprog 800 0 25 12 -> {"fin":true,"ticks":279} 
+ge43 FOUND 140 verified 140 [1,12,1
+ge32 refprog 800 0 15 20 -> {"fin":true,"ticks":182} 
+ge43 refprog 800 0 25 12 -> {"fin":true,"ticks":192} 
+ge43 refprog 800 0 15 20 -> {"fin":true,"ticks":136} 
+ge43 refprog 800 0 30 15 -> {"fin":true,"ticks":138} 
+ge32 refprog 800 0 30 15 -> {"fin":true,"ticks":189} 
+ge44 FOUND 185 verified 185 [3,20,2
+ge33 FOUND 168 verified 168 [1,14,2
+ge44 refprog 800 0 25 12 -> {"fin":true,"ticks":225} 
+ge33 refprog 800 0 25 12 -> {"fin":true,"ticks":160} 
+ge44 refprog 800 0 15 20 -> {"fin":true,"ticks":160} 
+ge44 refprog 800 0 30 15 -> <anonymous_script>:1 undefined ^  SyntaxError: "undefined" is not valid JSON     at JSON.parse (<anonymous>)     at Object.<anonymous> (/home/user/boxel-tas-v2/work/L22d/sim/sv.js:2:18)     at Module._compile (node:internal/modules/cjs/loader:1705:14)     at Object..js (node:internal/modules/cjs/loader:1838:10)     at Module.load (node:internal/modules/cjs/loader:1441:32)     at Function._load (node:internal/modules/cjs/loader:1263:12)     at TracingChannel.traceSync (node:diagnostics_channel:328:14)     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)     at node:internal/main/run_main_module:36:49  Node.js v22.22.2 
+ge45 FOUND 137 verified 137 [0,12,2
+ge45 refprog 800 0 25 12 -> {"fin":true,"ticks":238} 
+ge33 refprog 800 0 15 20 -> <anonymous_script>:1 undefined ^  SyntaxError: "undefined" is not valid JSON     at JSON.parse (<anonymous>)     at Object.<anonymous> (/home/user/boxel-tas-v2/work/L22d/sim/sv.js:2:18)     at Module._compile (node:internal/modules/cjs/loader:1705:14)     at Object..js (node:internal/modules/cjs/loader:1838:10)     at Module.load (node:internal/modules/cjs/loader:1441:32)     at Function._load (node:internal/modules/cjs/loader:1263:12)     at TracingChannel.traceSync (node:diagnostics_channel:328:14)     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)     at node:internal/main/run_main_module:36:49  Node.js v22.22.2 
+ge45 refprog 800 0 15 20 -> {"fin":true,"ticks":630} 
+ge33 refprog 800 0 30 15 -> {"fin":true,"ticks":160} 
+ge34 FOUND 135 verified 135 [5,17,1
+ge45 refprog 800 0 30 15 -> {"fin":true,"ticks":238} 
+ge34 refprog 800 0 25 12 -> {"fin":true,"ticks":129} 
+ge46 FOUND 174 verified 174 [3,20,2
+ge34 refprog 800 0 15 20 -> {"fin":true,"ticks":129} 
+ge46 refprog 800 0 25 12 -> {"fin":true,"ticks":132} 
+ge34 refprog 800 0 30 15 -> {"fin":true,"ticks":129} 
+ge46 refprog 800 0 15 20 -> {"fin":true,"ticks":180} 
+ge35 FOUND 172 verified 172 [11,29,
+ge46 refprog 800 0 30 15 -> {"fin":true,"ticks":139} 
+ge35 refprog 800 0 25 12 -> {"fin":true,"ticks":160} 
+ge35 refprog 800 0 15 20 -> {"fin":true,"ticks":626} 
+ge35 refprog 800 0 30 15 -> {"fin":true,"ticks":160} 
+ge36 FOUND 139 verified 139 [1,12,1
+ge36 refprog 800 0 25 12 -> {"fin":true,"ticks":129} 
+ge36 refprog 800 0 15 20 -> {"fin":true,"ticks":138} 
+ge36 refprog 800 0 30 15 -> {"fin":true,"ticks":214} 
+ge51 FOUND 164 verified 164 [0,11,1
+ge51 refprog 800 0 25 12 -> {"fin":true,"ticks":216} 
+ge51 refprog 800 0 15 20 -> <anonymous_script>:1 undefined ^  SyntaxError: "undefined" is not valid JSON     at JSON.parse (<anonymous>)     at Object.<anonymous> (/home/user/boxel-tas-v2/work/L22d/sim/sv.js:2:18)     at Module._compile (node:internal/modules/cjs/loader:1705:14)     at Object..js (node:internal/modules/cjs/loader:1838:10)     at Module.load (node:internal/modules/cjs/loader:1441:32)     at Function._load (node:internal/modules/cjs/loader:1263:12)     at TracingChannel.traceSync (node:diagnostics_channel:328:14)     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)     at node:internal/main/run_main_module:36:49  Node.js v22.22.2 
+ge51 refprog 800 0 30 15 -> {"fin":true,"ticks":230} 
+ge52 FOUND 142 verified 142 [3,17,2
+ge52 refprog 800 0 25 12 -> {"fin":true,"ticks":215} 
+ge52 refprog 800 0 15 20 -> {"fin":true,"ticks":185} 
+ge52 refprog 800 0 30 15 -> {"fin":true,"ticks":160} 
+ge53 FOUND 184 verified 184 [0,11,4
+ge53 refprog 800 0 25 12 -> {"fin":true,"ticks":151} 
+ge53 refprog 800 0 15 20 -> {"fin":true,"ticks":175} 
+ge53 refprog 800 0 30 15 -> {"fin":true,"ticks":228} 
+ge54 FOUND 177 verified 177 [3,17,5
+ge54 refprog 800 0 25 12 -> <anonymous_script>:1 undefined ^  SyntaxError: "undefined" is not valid JSON     at JSON.parse (<anonymous>)     at Object.<anonymous> (/home/user/boxel-tas-v2/work/L22d/sim/sv.js:2:18)     at Module._compile (node:internal/modules/cjs/loader:1705:14)     at Object..js (node:internal/modules/cjs/loader:1838:10)     at Module.load (node:internal/modules/cjs/loader:1441:32)     at Function._load (node:internal/modules/cjs/loader:1263:12)     at TracingChannel.traceSync (node:diagnostics_channel:328:14)     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)     at node:internal/main/run_main_module:36:49  Node.js v22.22.2 
+ge54 refprog 800 0 15 20 -> <anonymous_script>:1 undefined ^  SyntaxError: "undefined" is not valid JSON     at JSON.parse (<anonymous>)     at Object.<anonymous> (/home/user/boxel-tas-v2/work/L22d/sim/sv.js:2:18)     at Module._compile (node:internal/modules/cjs/loader:1705:14)     at Object..js (node:internal/modules/cjs/loader:1838:10)     at Module.load (node:internal/modules/cjs/loader:1441:32)     at Function._load (node:internal/modules/cjs/loader:1263:12)     at TracingChannel.traceSync (node:diagnostics_channel:328:14)     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)     at node:internal/main/run_main_module:36:49  Node.js v22.22.2 
+ge54 refprog 800 0 30 15 -> <anonymous_script>:1 undefined ^  SyntaxError: "undefined" is not valid JSON     at JSON.parse (<anonymous>)     at Object.<anonymous> (/home/user/boxel-tas-v2/work/L22d/sim/sv.js:2:18)     at Module._compile (node:internal/modules/cjs/loader:1705:14)     at Object..js (node:internal/modules/cjs/loader:1838:10)     at Module.load (node:internal/modules/cjs/loader:1441:32)     at Function._load (node:internal/modules/cjs/loader:1263:12)     at TracingChannel.traceSync (node:diagnostics_channel:328:14)     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)     at node:internal/main/run_main_module:36:49  Node.js v22.22.2 
+ge55 FOUND 129 verified 129 [0,15,1
+ge55 refprog 800 0 25 12 -> {"fin":true,"ticks":167} 
+ge55 refprog 800 0 15 20 -> <anonymous_script>:1 undefined ^  SyntaxError: "undefined" is not valid JSON     at JSON.parse (<anonymous>)     at Object.<anonymous> (/home/user/boxel-tas-v2/work/L22d/sim/sv.js:2:18)     at Module._compile (node:internal/modules/cjs/loader:1705:14)     at Object..js (node:internal/modules/cjs/loader:1838:10)     at Module.load (node:internal/modules/cjs/loader:1441:32)     at Function._load (node:internal/modules/cjs/loader:1263:12)     at TracingChannel.traceSync (node:diagnostics_channel:328:14)     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)     at node:internal/main/run_main_module:36:49  Node.js v22.22.2 
+ge55 refprog 800 0 30 15 -> {"fin":true,"ticks":178} 
+ge56 FOUND 186 verified 186 [7,30,3
+ge56 refprog 800 0 25 12 -> {"fin":true,"ticks":197} 
+ge56 refprog 800 0 15 20 -> {"fin":true,"ticks":164} 
