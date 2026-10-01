@@ -19,6 +19,19 @@
     p.rotation.z = -(b.anglePrev + (b.angle - b.anglePrev) * ALPHA);
   });
 
+  // 0) Pin app.interval.speed. The game multiplies the launch speed of LOOSE bounce pads (and anything
+  //    else that reads it) by app.interval.speed, a frame-time dependent value, so loose-pad fields
+  //    (level 17) played out differently every attempt. The simulator assumes 1. The original value is
+  //    logged; change window.__ISPEED to override.
+  window.__ISPEED = 1;
+  try {
+    const iv = app.interval;
+    if (iv && typeof iv === 'object') {
+      console.log('[det] app.interval.speed was', iv.speed, '- pinning to', window.__ISPEED);
+      Object.defineProperty(iv, 'speed', { configurable: true, enumerable: true, get() { return window.__ISPEED; }, set() {} });
+    } else console.warn('[det] app.interval not found; cannot pin interval speed');
+  } catch (err) { console.warn('[det] could not pin app.interval.speed', err); }
+
   // 1a) Tick-0 jump: a leading "j0" in loadInputs([...]) jumps immediately when the run starts,
   //     before the first physics step (same as pressing jump in the same frame as restarting).
   //     A leading "p0" = "pre-touched" start: sensor blocks the player overlaps at spawn don't

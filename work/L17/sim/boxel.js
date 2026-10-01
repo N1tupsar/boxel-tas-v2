@@ -51,7 +51,7 @@ class Obj {
   setStatic(e = true) { Body.setStatic(this.body, e); }
   setForce(e, t, n = false) { // bounce reflection
     const b = this.body; let s = t.body.angle, c = Math.atan2(b.position.y - b.positionPrev.y, b.position.x - b.positionPrev.x);
-    if (n) { s = b.angle; c = b.angle + Math.PI / 2; e *= -1; }
+    if (n) { s = b.angle; c = b.angle + Math.PI / 2; e *= -1 * (+process.env.ISPEED || 1); }
     const l = Math.cos(c), u = Math.sin(c), d = -Math.sin(s), f = Math.cos(s), p = l * d + u * f, m = l - 2 * p * d, h = u - 2 * p * f;
     if (p < 0 && (Math.abs(m) == 1 || Math.abs(h) == 1)) e *= -1;
     Body.setVelocity(b, { x: m * e, y: h * e });
