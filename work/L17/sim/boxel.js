@@ -121,7 +121,7 @@ class Sim {
         if (o.class !== 'sensor') continue;
         const k = c.body.class, isP = l.body.class === 'player';
         if (k === 'tip') { if (isP) c.hide(); }
-        else if (k === 'bounce') { const u = c.scale.y / 2; { const V = process.env.VAR || ''; const A = () => { if (!c.body.isStatic) c.setForce(u, l, true); }, B = () => { if (!l.body.isStatic) l.setForce(u, c); };
+        else if (k === 'bounce') { const u = c.scale.y / 2; { const V = process.env.VAR || ''; if (process.env.DBG && this.tick===175 && (c.body.id===87||c.body.id===93||l.body.id===87||l.body.id===93)) console.log('EV175 c',c.body.id,'l',l.body.id,'lstatic',l.body.isStatic,'c.v',c.body.velocity.x.toFixed(2),c.body.velocity.y.toFixed(2),'l.v',l.body.velocity.x.toFixed(2),l.body.velocity.y.toFixed(2),'c.ang',c.body.angle.toFixed(3),'l.ang',l.body.angle.toFixed(3),'pairidx', ev.pairs.indexOf(pair)); const SK = (process.env.SKIP || '').split(','); const A = () => { if (this.tick===175 && SK.includes('A'+c.body.id)) return; if (!c.body.isStatic) c.setForce(u, l, true); }, B = () => { if (this.tick===175 && SK.includes('B'+l.body.id)) return; if (!l.body.isStatic) l.setForce(u, c); };
           if (V === 'noB') A(); else if (V === 'noA') B(); else if (V === 'swap') { B(); A(); } else { A(); B(); } } if (isP) this.log('bounce'); }
         else if (k === 'checkpoint') { if (isP) { P.checkpoint = { ...c.position }; this.log('checkpoint'); } }
         else if (k === 'spike') { if (isP) this.kill('spike'); }
@@ -213,6 +213,7 @@ class Sim {
     }
     if (b.speed < P.controls.speed) Body.applyForce(b, b.position, { x: P.force.x, y: P.force.y });
     this.updateRope();
+    if (process.env.VAR === 'resetdet') this.engine.detector.bodies = Composite.allBodies(this.engine.world).slice(0);
     Engine.update(this.engine, DT);
     this.tick++;
     if (b.position.y > 1000) this.kill('fell');
