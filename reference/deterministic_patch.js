@@ -160,7 +160,7 @@
     const b = app.player.body;
     window.__log.push([b.position.x, b.position.y, b.angle, b.velocity.x, b.velocity.y, app.player.jumpReady ? 1 : 0]);
     const n = window.__log.length;  // = number of physics steps since the start
-    if (n === 1 || n === 30 || n === 100 || n === 200 || n === 300 || n === 330)
+    if (n === 1 || n === 30 || (n >= 100 && n <= 340 && n % 10 === 0))
       window.__loose[n] = Matter.Composite.allBodies(app.engine.world).filter(q => !q.isStatic && q !== b).map(q => [+q.position.x.toFixed(1), +q.position.y.toFixed(1), +q.angle.toFixed(2)]);
   });
   console.log('[det] deterministic patch installed (alpha ' + ALPHA + '). Now open the level.');
