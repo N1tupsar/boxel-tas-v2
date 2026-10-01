@@ -1,0 +1,6 @@
+800 0 30 12 -> {"fin":true,"ticks":346} 
+800 0 20 20 -> {"fin":true,"ticks":346} 
+1000 0 15 25 -> {"fin":true,"ticks":346} 
+800 30 25 10 -> {"fin":true,"ticks":355} 
+800 60 30 15 -> {"fin":true,"ticks":355} 
+800 0 40 8 -> {"fin":true,"ticks":346} 

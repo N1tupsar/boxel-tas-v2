@@ -1,0 +1,16 @@
+{"fin":true,"ticks":328}
+{"fin":true,"ticks":328}
+{"fin":true,"ticks":328}
+{"fin":true,"ticks":328}
+{"fin":true,"ticks":328}
+{"fin":true,"ticks":328}
+{"fin":true,"ticks":328}
+{"fin":true,"ticks":330}
+{"fin":true,"ticks":328}
+{"fin":true,"ticks":333}
+{"fin":true,"ticks":328}
+{"fin":true,"ticks":328}
+{"fin":true,"ticks":328}
+{"fin":true,"ticks":328}
+{"fin":true,"ticks":328}
+{"fin":true,"ticks":328}
