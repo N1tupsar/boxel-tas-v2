@@ -13,3 +13,4 @@ ref43 800 0 35 10 -> {"fin":true,"ticks":196}
 ref43 1000 0 25 18 -> {"fin":true,"ticks":145} 
 ref43 800 0 28 8 -> {"fin":true,"ticks":214} 
 ref43 800 10 25 12 -> {"fin":true,"ticks":223} 
+ref36 800 0 20 12 -> {"fin":true,"ticks":129} 
