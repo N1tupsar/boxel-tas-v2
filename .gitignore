@@ -1,0 +1,6 @@
+node_modules/
+*.log
+work/L3/baselines
+work/L3/levels
+work/L3/reference
+pres.json
