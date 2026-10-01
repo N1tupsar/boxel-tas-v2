@@ -69,3 +69,39 @@ ge55 refprog 800 0 30 15 -> {"fin":true,"ticks":178}
 ge56 FOUND 186 verified 186 [7,30,3
 ge56 refprog 800 0 25 12 -> {"fin":true,"ticks":197} 
 ge56 refprog 800 0 15 20 -> {"fin":true,"ticks":164} 
+ge121 FOUND 162 verified 162 [3,16,2
+ge101 FOUND 167 verified 167 [7,21,2
+ge101 refprog 800 0 25 12 -> {"fin":true,"ticks":138} 
+ge121 refprog 800 0 25 12 -> {"fin":true,"ticks":236} 
+ge121 refprog 800 0 35 10 -> {"fin":true,"ticks":160} 
+ge101 refprog 800 0 35 10 -> {"fin":true,"ticks":234} 
+ge122 FOUND 142 verified 142 [5,17,2
+ge102 FOUND 179 verified 179 [2,20,3
+ge122 refprog 800 0 25 12 -> {"fin":true,"ticks":129} 
+ge102 refprog 800 0 25 12 -> {"fin":true,"ticks":155} 
+ge122 refprog 800 0 35 10 -> {"fin":true,"ticks":214} 
+ge102 refprog 800 0 35 10 -> {"fin":true,"ticks":142} 
+ge123 FOUND 145 verified 145 [5,19,2
+ge103 FOUND 144 verified 144 [0,11,2
+ge123 refprog 800 0 25 12 -> {"fin":true,"ticks":165} 
+ge103 refprog 800 0 25 12 -> {"fin":true,"ticks":150} 
+ge123 refprog 800 0 35 10 -> {"fin":true,"ticks":178} 
+ge103 refprog 800 0 35 10 -> {"fin":true,"ticks":150} 
+ge124 FOUND 169 verified 169 [6,22,2
+ge104 FOUND 170 verified 170 [3,16,2
+ge124 refprog 800 0 25 12 -> {"fin":true,"ticks":141} 
+ge104 refprog 800 0 25 12 -> {"fin":true,"ticks":137} 
+ge124 refprog 800 0 35 10 -> {"fin":true,"ticks":175} 
+ge104 refprog 800 0 35 10 -> {"fin":true,"ticks":141} 
+ge125 FOUND 148 verified 148 [1,13,1
+ge105 FOUND 190 verified 190 [7,20,2
+ge105 refprog 800 0 25 12 -> {"fin":true,"ticks":141} 
+ge105 refprog 800 0 35 10 -> {"fin":true,"ticks":129} 
+ge106 FOUND 129 verified 129 [0,15,1
+ge106 refprog 800 0 25 12 -> {"fin":true,"ticks":167} 
+ge106 refprog 800 0 35 10 -> {"fin":true,"ticks":233} 
+ge125 refprog 800 0 25 12 -> <anonymous_script>:1 undefined ^  SyntaxError: "undefined" is not valid JSON     at JSON.parse (<anonymous>)     at Object.<anonymous> (/home/user/boxel-tas-v2/work/L22d/sim/sv.js:2:18)     at Module._compile (node:internal/modules/cjs/loader:1705:14)     at Object..js (node:internal/modules/cjs/loader:1838:10)     at Module.load (node:internal/modules/cjs/loader:1441:32)     at Function._load (node:internal/modules/cjs/loader:1263:12)     at TracingChannel.traceSync (node:diagnostics_channel:328:14)     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)     at node:internal/main/run_main_module:36:49  Node.js v22.22.2 
+ge107 FOUND 170 verified 170 [0,14,1
+ge107 refprog 800 0 25 12 -> {"fin":true,"ticks":186} 
+ge107 refprog 800 0 35 10 -> <anonymous_script>:1   SyntaxError: Unexpected end of JSON input     at JSON.parse (<anonymous>)     at Object.<anonymous> (/home/user/boxel-tas-v2/work/L22d/sim/sv.js:2:18)     at Module._compile (node:internal/modules/cjs/loader:1705:14)     at Object..js (node:internal/modules/cjs/loader:1838:10)     at Module.load (node:internal/modules/cjs/loader:1441:32)     at Function._load (node:internal/modules/cjs/loader:1263:12)     at TracingChannel.traceSync (node:diagnostics_channel:328:14)     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)     at node:internal/main/run_main_module:36:49  Node.js v22.22.2 
+ge125 refprog 800 0 35 10 -> <anonymous_script>:1   SyntaxError: Unexpected end of JSON input     at JSON.parse (<anonymous>)     at Object.<anonymous> (/home/user/boxel-tas-v2/work/L22d/sim/sv.js:2:18)     at Module._compile (node:internal/modules/cjs/loader:1705:14)     at Object..js (node:internal/modules/cjs/loader:1838:10)     at Module.load (node:internal/modules/cjs/loader:1441:32)     at Function._load (node:internal/modules/cjs/loader:1263:12)     at TracingChannel.traceSync (node:diagnostics_channel:328:14)     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)     at node:internal/main/run_main_module:36:49  Node.js v22.22.2 
