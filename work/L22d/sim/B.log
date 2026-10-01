@@ -105,3 +105,46 @@ ge107 FOUND 170 verified 170 [0,14,1
 ge107 refprog 800 0 25 12 -> {"fin":true,"ticks":186} 
 ge107 refprog 800 0 35 10 -> <anonymous_script>:1   SyntaxError: Unexpected end of JSON input     at JSON.parse (<anonymous>)     at Object.<anonymous> (/home/user/boxel-tas-v2/work/L22d/sim/sv.js:2:18)     at Module._compile (node:internal/modules/cjs/loader:1705:14)     at Object..js (node:internal/modules/cjs/loader:1838:10)     at Module.load (node:internal/modules/cjs/loader:1441:32)     at Function._load (node:internal/modules/cjs/loader:1263:12)     at TracingChannel.traceSync (node:diagnostics_channel:328:14)     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)     at node:internal/main/run_main_module:36:49  Node.js v22.22.2 
 ge125 refprog 800 0 35 10 -> <anonymous_script>:1   SyntaxError: Unexpected end of JSON input     at JSON.parse (<anonymous>)     at Object.<anonymous> (/home/user/boxel-tas-v2/work/L22d/sim/sv.js:2:18)     at Module._compile (node:internal/modules/cjs/loader:1705:14)     at Object..js (node:internal/modules/cjs/loader:1838:10)     at Module.load (node:internal/modules/cjs/loader:1441:32)     at Function._load (node:internal/modules/cjs/loader:1263:12)     at TracingChannel.traceSync (node:diagnostics_channel:328:14)     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)     at node:internal/main/run_main_module:36:49  Node.js v22.22.2 
+ge126 FOUND 130 verified 130 [1,16,1
+ge108 FOUND 149 verified 149 [6,20,2
+ge126 refprog 800 0 25 12 -> {"fin":true,"ticks":233} 
+ge108 refprog 800 0 25 12 -> {"fin":true,"ticks":162} 
+ge108 refprog 800 0 35 10 -> {"fin":true,"ticks":164} 
+ge126 refprog 800 0 35 10 -> {"fin":true,"ticks":233} 
+ge109 FOUND 178 verified 178 [1,12,2
+ge127 FOUND 235 verified 235 [24,76,
+ge109 refprog 800 0 25 12 -> {"fin":true,"ticks":182} 
+ge127 refprog 800 0 25 12 -> {"fin":true,"ticks":210} 
+ge109 refprog 800 0 35 10 -> {"fin":true,"ticks":138} 
+ge110 FOUND 198 verified 198 [5,17,2
+ge127 refprog 800 0 35 10 -> {"fin":true,"ticks":297} 
+ge110 refprog 800 0 25 12 -> {"fin":true,"ticks":186} 
+ge128 FOUND 181 verified 181 [3,18,4
+ge110 refprog 800 0 35 10 -> {"fin":true,"ticks":244} 
+ge128 refprog 800 0 25 12 -> {"fin":true,"ticks":158} 
+ge111 FOUND 163 verified 163 [0,16,1
+ge128 refprog 800 0 35 10 -> {"fin":true,"ticks":141} 
+ge111 refprog 800 0 25 12 -> {"fin":true,"ticks":175} 
+ge129 none
+ge130 FOUND 198 verified 198 [1,16,1
+ge111 refprog 800 0 35 10 -> {"fin":true,"ticks":145} 
+ge112 FOUND 206 verified 206 [2,17,1
+ge130 refprog 800 0 25 12 -> {"fin":true,"ticks":235} 
+ge112 refprog 800 0 25 12 -> {"fin":true,"ticks":237} 
+ge130 refprog 800 0 35 10 -> {"fin":true,"ticks":234} 
+ge112 refprog 800 0 35 10 -> {"fin":true,"ticks":210} 
+ge131 FOUND 129 verified 129 [0,15,1
+ge113 FOUND 185 verified 185 [4,17,2
+ge131 refprog 800 0 25 12 -> {"fin":true,"ticks":242} 
+ge113 refprog 800 0 25 12 -> {"fin":true,"ticks":141} 
+ge131 refprog 800 0 35 10 -> {"fin":true,"ticks":240} 
+ge113 refprog 800 0 35 10 -> {"fin":true,"ticks":185} 
+ge132 FOUND 191 verified 191 [8,24,3
+ge114 FOUND 161 verified 161 [11,39,
+ge114 refprog 800 0 25 12 -> {"fin":true,"ticks":212} 
+ge132 refprog 800 0 25 12 -> {"fin":true,"ticks":155} 
+ge132 refprog 800 0 35 10 -> {"fin":true,"ticks":131} 
+ge114 refprog 800 0 35 10 -> {"fin":true,"ticks":212} 
+ge133 FOUND 187 verified 187 [4,25,3
+ge115 FOUND 189 verified 189 [1,26,4
+ge133 refprog 800 0 25 12 -> {"fin":true,"ticks":196} 

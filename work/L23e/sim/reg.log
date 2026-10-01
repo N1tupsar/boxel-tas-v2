@@ -1,0 +1,2 @@
+exit-left TM1000 :: {"level":23,"fail":"timeout","t":599}
+exit-left TM4 :: {"level":23,"fail":"all dead","t":672}
