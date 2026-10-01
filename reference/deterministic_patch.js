@@ -19,18 +19,22 @@
     p.rotation.z = -(b.anglePrev + (b.angle - b.anglePrev) * ALPHA);
   });
 
-  // 0) Pin app.interval.speed. The game multiplies the launch speed of LOOSE bounce pads (and anything
-  //    else that reads it) by app.interval.speed, a frame-time dependent value, so loose-pad fields
-  //    (level 17) played out differently every attempt. The simulator assumes 1. The original value is
-  //    logged; change window.__ISPEED to override.
-  window.__ISPEED = 1;
-  try {
+  // 0) Pin app.interval.speed (loose bounce pads multiply their launch speed by it; the simulator assumes 1).
+  //    Re-applied every frame and on level start in case the game replaces the app.interval object.
+  //    window.__ispeedReads counts how often the game actually read the pinned value.
+  window.__ISPEED = 1; window.__ispeedReads = 0;
+  const pinInterval = () => {
     const iv = app.interval;
-    if (iv && typeof iv === 'object') {
+    if (!iv || typeof iv !== 'object' || iv.__detPinned) return;
+    try {
       console.log('[det] app.interval.speed was', iv.speed, '- pinning to', window.__ISPEED);
-      Object.defineProperty(iv, 'speed', { configurable: true, enumerable: true, get() { return window.__ISPEED; }, set() {} });
-    } else console.warn('[det] app.interval not found; cannot pin interval speed');
-  } catch (err) { console.warn('[det] could not pin app.interval.speed', err); }
+      Object.defineProperty(iv, 'speed', { configurable: true, enumerable: true, get() { window.__ispeedReads++; return window.__ISPEED; }, set() {} });
+      Object.defineProperty(iv, '__detPinned', { value: true });
+    } catch (err) { console.warn('[det] could not pin app.interval.speed', err); }
+  };
+  pinInterval();
+  window.addEventListener('levelStart', pinInterval);
+  addUpdateFunction(pinInterval);
 
   // 1a) Tick-0 jump: a leading "j0" in loadInputs([...]) jumps immediately when the run starts,
   //     before the first physics step (same as pressing jump in the same frame as restarting).
@@ -161,7 +165,7 @@
     window.__log.push([b.position.x, b.position.y, b.angle, b.velocity.x, b.velocity.y, app.player.jumpReady ? 1 : 0]);
     const n = window.__log.length;  // = number of physics steps since the start
     if (n === 1 || n === 30 || (n >= 100 && n <= 340 && n % 10 === 0))
-      window.__loose[n] = Matter.Composite.allBodies(app.engine.world).filter(q => !q.isStatic && q !== b).map(q => [+q.position.x.toFixed(1), +q.position.y.toFixed(1), +q.angle.toFixed(2)]);
+      window.__loose[n] = Matter.Composite.allBodies(app.engine.world).filter(q => !q.isStatic && q !== b).slice(0, 20).map(q => [+q.position.x.toFixed(1), +q.position.y.toFixed(1), +q.angle.toFixed(2)]);
   });
   console.log('[det] deterministic patch installed (alpha ' + ALPHA + '). Now open the level.');
 })();
