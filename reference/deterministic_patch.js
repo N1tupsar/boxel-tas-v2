@@ -108,10 +108,12 @@
     for (const body of Matter.Composite.allBodies(app.engine.world))
       snap.set(body, body.parts.map(snapPart));   // parts[0] is the body itself
     window.__detSnap = snap;
+    // Diagnostics: world body order (affects Matter's pair/solver order) at level start.
+    window.__order = Matter.Composite.allBodies(app.engine.world).map(b => [b.class || b.label, +b.position.x.toFixed(1), +b.position.y.toFixed(1), b.isStatic ? 1 : 0]);
     console.log('[det] snapshot of', snap.size, 'bodies taken');
   });
 
-  window.__log = [];
+  window.__log = []; window.__loose = {};
   // 3) On "t": only flag a pending start. The actual restore (+ optional tick-0 jump) happens at
   //    the very start of the next physics step (inside player.updateControls, which the game calls
   //    right before Engine.update), i.e. after every keydown handler, including the TAS mod's
@@ -136,7 +138,7 @@
       // The base game keeps jumpReady across restarts (touch the ground, then restart -> a jump is
       // available from frame 1). Theory mode always starts WITH the jump available.
       app.player.jumpReady = true; app.player.jumpBuffer = 0;
-      window.__log = [];
+      window.__log = []; window.__loose = {};
       if (window.__p0) {  // mute effects of sensors already overlapping the player (pairs still form)
         const pbb = b.bounds;
         for (const o of Matter.Composite.allBodies(app.engine.world)) {
@@ -157,6 +159,9 @@
     if (window.__log.length >= LOGN) return;
     const b = app.player.body;
     window.__log.push([b.position.x, b.position.y, b.angle, b.velocity.x, b.velocity.y, app.player.jumpReady ? 1 : 0]);
+    const n = window.__log.length;  // = number of physics steps since the start
+    if (n === 1 || n === 30 || n === 100 || n === 200 || n === 300 || n === 330)
+      window.__loose[n] = Matter.Composite.allBodies(app.engine.world).filter(q => !q.isStatic && q !== b).map(q => [+q.position.x.toFixed(1), +q.position.y.toFixed(1), +q.angle.toFixed(2)]);
   });
   console.log('[det] deterministic patch installed (alpha ' + ALPHA + '). Now open the level.');
 })();
