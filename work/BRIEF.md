@@ -38,3 +38,5 @@ Leading "j0" in the TAS array = jump before step 0. sim/tas.js toTas/emulate sup
 # PRIORITY (user): MUST-BEAT levels vs other TASers / human WRs (in-game seconds = (frames-1.5)/60)
 Targets (frames must be below): L3 <322.5 (now 328) · L4 <258.5 (259) · L6 <234.5 (236) · L9 <340.5 (337 ok, push more) · L22 <127.8 (134) · L24 <231.5 (255) · L28 <364.5 (473; adam 6.05s, WR 6.968).
 These mean a whole route shape/glitch was missed: re-brainstorm from scratch (different basin/region/trick), don't polish. Human WR runs may use glitches: find them. Don't pursue p0 on L25 (stays 106).
+
+# HARD STOP: 2026-10-01 08:18:35 UTC (set 2026-10-01 03:48:35 UTC). Agents: stop all work and report by 15 min before this time.

@@ -1,1 +1,4 @@
-topleft TM1000 WPS=[[-45,408,40],[624,-328,30]] :: {"level":24,"fail":"timeout","t":370}
+euclid TM1000 WPS=[[624,-328,30]] :: {"level":24,"fail":"timeout","t":338}
+overwall TM1000 WPS=[[325,-50,25],[624,-328,30]] :: {"level":24,"fail":"timeout","t":253}
+euclid TM4 WPS=[[624,-328,30]] :: {"level":24,"W":600,"TMIN":4,"alphas":[0.5],"ticks":255,"jumps":[101,180,204,222,240,250]}
+overwall TM4 WPS=[[325,-50,25],[624,-328,30]] :: {"level":24,"W":600,"TMIN":4,"alphas":[0.5],"ticks":255,"jumps":[101,180,204,222,240,250]}
