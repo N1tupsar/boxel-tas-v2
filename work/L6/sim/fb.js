@@ -8,11 +8,13 @@ let sd = +(process.env.SEED || 1); const rnd = () => { sd = (sd * 1664525 + 1013
 const g = 0.001 * (1000 / 60) ** 2;
 const S = new Sim(loadLevel(6)); const F = mkFast(S); const P = S.player, b = P.body;
 const PREJ = process.env.PREJ ? new Set(JSON.parse(process.env.PREJ)) : new Set(); const T0 = +(process.env.T0 || 0);
+const KA = +(process.env.KA || 0);
 const KQ = +(process.env.KQ || 3);
 function hl(h) { const o = []; while (h) { o.push(h.t); h = h.prev; } return o.reverse(); }
 function score() {
   const v2 = b.velocity.x ** 2 + b.velocity.y ** 2;
   const Hh = -b.position.y + G * v2 / (2 * g);
+  if (process.env.TW) return +process.env.TW * (b.position.x + 75) / Math.max(-b.velocity.x, +(process.env.CMIN || 5)) - G * Hh + (NOISE ? NOISE * (rnd() - 0.5) : 0);
   return -Hh + A * b.position.x + B * b.velocity.x - YW * (-b.position.y) + (NOISE ? NOISE * (rnd() - 0.5) : 0);
 }
 let t = 0;
@@ -32,7 +34,7 @@ for (; t < MAXT; t++) {
       if (S.dead) continue;
       if (S.finished) { const r = { ticks: S.finishTick + 1, jumps: hl(j ? { t, prev: st.hist } : st.hist) }; if (!best || r.ticks < best.ticks) best = r; continue; }
       const sc = score();
-      const key = [Math.round(b.position.x / KQ), Math.round(b.position.y / KQ), Math.round(b.velocity.x), Math.round(b.velocity.y), P.jumpReady ? 1 : 0].join();
+      const key = [Math.round(b.position.x / KQ), Math.round(b.position.y / KQ), Math.round(b.velocity.x), Math.round(b.velocity.y), P.jumpReady ? 1 : 0].concat(KA ? [Math.round((((b.angle % (Math.PI / 2)) + Math.PI / 2) % (Math.PI / 2)) * KA), Math.round(b.angularVelocity * 20)] : []).join();
       const pr = kids.get(key);
       if (!pr || pr.score > sc) kids.set(key, { score: sc, snap: F.save(), hist: j ? { t, prev: st.hist } : st.hist });
     }
