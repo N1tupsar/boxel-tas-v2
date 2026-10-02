@@ -5,12 +5,12 @@ const VF = ['position','positionPrev','velocity','force','positionImpulse','cons
 function mkFast(sim) {
   const b = sim.player.body, P = sim.player, E = sim.engine;
   const live = new Map(); // body objects to share
-  const share = (v) => (v && typeof v === 'object' && v.type === 'body') ? v : undefined;
+  const share = (v) => { if (!v || typeof v !== 'object') return undefined; if (v.type === 'body') return v; if (typeof v.index === 'number' && v.body && v.body.type === 'body' && 'isInternal' in v) return v.body.vertices[v.index]; return undefined; };
   function save() {
     const s = { b: {}, v: {}, vert: b.vertices.map(p => [p.x, p.y]), axes: b.axes.map(p => [p.x, p.y]), bounds: [b.bounds.min.x, b.bounds.min.y, b.bounds.max.x, b.bounds.max.y],
       ts: E.timing.timestamp, tick: sim.tick, finished: sim.finished, dead: sim.dead, finishTick: sim.finishTick,
       jr: P.jumpReady, pf: { x: P.force.x, y: P.force.y }, mode: P.mode, wp: sim.wp, gx: E.gravity.x, gy: E.gravity.y,
-      evl: sim.events.length };
+      evl: sim.events.length, cat: b.collisionFilter.category };
     for (const k of BF) s.b[k] = b[k];
     for (const k of VF) s.v[k] = [b[k].x, b[k].y, b[k].angle];
     s.parts = b.parts.slice(1).map(p => ({ pos: [p.position.x, p.position.y], pp: [p.positionPrev.x, p.positionPrev.y], ang: p.angle, ap: p.anglePrev, vert: p.vertices.map(q => [q.x, q.y]), axes: p.axes.map(q => [q.x, q.y]), bounds: [p.bounds.min.x, p.bounds.min.y, p.bounds.max.x, p.bounds.max.y] }));
@@ -29,7 +29,7 @@ function mkFast(sim) {
     E.timing.timestamp = s.ts;
     sim.tick = s.tick; sim.finished = s.finished; sim.dead = s.dead; sim.finishTick = s.finishTick;
     P.jumpReady = s.jr; P.force = { x: s.pf.x, y: s.pf.y }; P.mode = s.mode; sim.wp = s.wp; E.gravity.x = s.gx; E.gravity.y = s.gy;
-    sim.events.length = s.evl;
+    sim.events.length = s.evl; b.collisionFilter.category = s.cat;
     if (sim.dead) { /* collisionFilter category was zeroed */ }
     const np = _.cloneDeepWith(s.pairs, (v) => share(v)); for (const k in np) E.pairs[k] = np[k];
     // body.position etc may be shared objects with parts[0]; fine (single part)
