@@ -13,8 +13,10 @@
   window.addEventListener('playerRespawn', () => { if (started && window.__log.length > 5) died = true; });
   const runOnce = (jumps) => new Promise((resolve) => {
     const oldRef = window.__log; started = false; finished = false; died = false;
+    try { app.play = 1; } catch (e) {}   // the game only raises levelFinish while app.play is set; a finish clears it
     window.loadInputs(toTas(jumps));
     window.dispatchEvent(new KeyboardEvent('keydown', { key: 't' }));
+    try { app.play = 1; } catch (e) {}
     let seen = 0, best = 1e9; const t0 = performance.now();
     const poll = () => {
       const log = window.__log;
