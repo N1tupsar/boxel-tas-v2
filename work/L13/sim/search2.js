@@ -6,7 +6,6 @@ const WAYPOINTS = {
   6: [[568, -110], [1150, -70, 22], [1300, -70, 22], [1640, -50], [1655, 150], [1450, 215], [900, 215], [300, 215], [0, 215], [-88, 60]],
   26: [[1136, 140, 40], [48, 332, 45], [1136, 522, 45], [1076, 720, 40], [1076, 1000, 40]],
   13: [[-16, -40, 45], [-150, 130, 45], [-207, 66, 22]],
-  29: JSON.parse(process.env.WP29||'[]'),
   9: [[1320, 40], [1376, 20], [1400, 140], [1200, 120], [700, 100], [300, 85]],
 };
 const WR = 40;
@@ -30,6 +29,7 @@ function makeScorer(level, n, root, LA = 0) {
   };
 }
 
+let _sd=+(process.env.SEED||1);function rnd(){_sd=(_sd*1664525+1013904223)>>>0;return _sd/4294967296}
 function keyOf(s) {
   const b = s.player.body;
   const ang = ((b.angle % (Math.PI / 2)) + Math.PI / 2) % (Math.PI / 2);
@@ -57,7 +57,7 @@ function beam(level, n, { W = 300, maxTicks = 1500, timeLimitMs = 120000, log = 
         c.hist = acts[k] ? { t, prev: s.hist } : s.hist;
         if (c.finished) { best = { ticks: c.finishTick + 1, jumps: histList(c.hist) }; return best; }
         if (c.dead) continue;
-        c.score = score(c);
+        c.score = score(c) + (process.env.NOISE ? (process.env.NOISE * rnd()) : 0);
         const key = keyOf(c); const pr = kids.get(key);
         if (!pr || pr.score > c.score) kids.set(key, c);
       }

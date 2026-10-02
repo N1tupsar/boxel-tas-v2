@@ -5,18 +5,17 @@ const L = loadLevel(n); const full = require('./best.json')[String(n)];
 const pre = full.filter(t => t < T0); const J = new Set(pre);
 const root = new Sim(L); while (root.tick < T0) root.step({ jump: J.has(root.tick) });
 const grid = buildGrid(new Sim(L));
-let _sd=+(process.env.SEED||1);const rnd=()=>{_sd=(_sd*1664525+1013904223)>>>0;return _sd/4294967296};
 const score = s => { const b = s.player.body; return grid.at(b.position.x, b.position.y) / Math.max(Math.hypot(b.velocity.x, b.velocity.y), TMIN); };
 const key = s => { const b = s.player.body; return [Math.round(b.position.x), Math.round(b.position.y), Math.round(b.velocity.x * 4), Math.round(b.velocity.y * 4), Math.round((((b.angle % 1.5708) + 1.5708) % 1.5708) * 10), s.player.jumpReady ? 1 : 0].join(','); };
 root.hist = null; let beam = [root]; let best = null;
-for (let t = T0; t < T0 + 450; t++) {
+for (let t = T0; t < T0 + 600; t++) {
   const kids = new Map();
   for (const s of beam) {
     const acts = s.player.jumpReady ? [true, false] : [false];
     for (let k = 0; k < acts.length; k++) {
       const c = k === acts.length - 1 ? s : cloneSim(s); c.step({ jump: acts[k] }); c.hist = acts[k] ? { t, prev: s.hist } : s.hist;
       if (c.finished) { const js = []; let h = c.hist; while (h) { js.push(h.t); h = h.prev; } best = { ticks: c.finishTick + 1, jumps: [...pre, ...js.reverse()] }; break; }
-      if (c.dead) continue; c.score = score(c) + (process.env.NOISE ? process.env.NOISE * rnd() : 0); const kk = key(c); const p = kids.get(kk); if (!p || p.score > c.score) kids.set(kk, c);
+      if (c.dead) continue; c.score = score(c); const kk = key(c); const p = kids.get(kk); if (!p || p.score > c.score) kids.set(kk, c);
     }
     if (best) break;
   }

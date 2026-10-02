@@ -8,3 +8,11 @@ work/L29/baselines
 work/L29/levels
 work/L29/reference
 work/L29/sim/L29.png
+work/L*/sim/*.png
+work/L*/sim/*.log
+work/L*/sim/pres.json
+work/L*/levels
+work/L*/reference
+work/L*/baselines
+work/L*/sim/node_modules/
+work/L*/sim/package-lock.json

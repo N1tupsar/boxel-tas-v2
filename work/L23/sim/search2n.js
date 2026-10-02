@@ -6,7 +6,6 @@ const WAYPOINTS = {
   6: [[568, -110], [1150, -70, 22], [1300, -70, 22], [1640, -50], [1655, 150], [1450, 215], [900, 215], [300, 215], [0, 215], [-88, 60]],
   26: [[1136, 140, 40], [48, 332, 45], [1136, 522, 45], [1076, 720, 40], [1076, 1000, 40]],
   13: [[-16, -40, 45], [-150, 130, 45], [-207, 66, 22]],
-  29: JSON.parse(process.env.WP29||'[]'),
   9: [[1320, 40], [1376, 20], [1400, 140], [1200, 120], [700, 100], [300, 85]],
 };
 const WR = 40;
@@ -42,9 +41,10 @@ function histList(h) { const out = []; while (h) { out.push(h.t); h = h.prev; } 
 
 function beam(level, n, { W = 300, maxTicks = 1500, timeLimitMs = 120000, log = false, dumpWp = null, LA = 0 } = {}) {
   const root = new Sim(level); root.hist = null; root.wp = 0;
+  if (process.env.T0) { const T0 = +process.env.T0, PJ = JSON.parse(process.env.PREJ).filter(t => t < T0), J = new Set(PJ); while (root.tick < T0) root.step({ jump: J.has(root.tick) }); for (const t of PJ) root.hist = { t, prev: root.hist }; }
   const score = makeScorer(level, n, root, LA);
   let beamS = [root]; const t0 = Date.now(); let best = null;
-  for (let t = 0; t < maxTicks; t++) {
+  for (let t = +(process.env.T0 || 0); t < maxTicks; t++) {
     const kids = new Map();
     for (const s of beamS) {
       const P = s.player;
