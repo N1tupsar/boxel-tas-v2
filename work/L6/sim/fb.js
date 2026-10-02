@@ -11,10 +11,27 @@ const PREJ = process.env.PREJ ? new Set(JSON.parse(process.env.PREJ)) : new Set(
 const KA = +(process.env.KA || 0);
 const KQ = +(process.env.KQ || 3);
 function hl(h) { const o = []; while (h) { o.push(h.t); h = h.prev; } return o.reverse(); }
+
+const gg = g;
+function ana(x, y, vx, vy, ready) {
+  const T = (x + 72) / (-vx); let bestPen = 1e9;
+  const taus = []; if (ready) for (let k = 0; k <= T; k += 2) taus.push(k); taus.push(-1);
+  for (const tau of taus) {
+    let pen = 0;
+    const yAt = (tt) => { if (tau < 0 || tt <= tau) return y + vy * tt - gg * tt * tt / 2; const y1 = y + vy * tau - gg * tau * tau / 2; const d = tt - tau; return y1 + 6.667 * d - gg * d * d / 2; };
+    for (let xs = Math.min(x, 640); xs >= -72; xs -= 16) { const tt = (x - xs) / (-vx); const yy = yAt(tt);
+      let need = -1e9;
+      if (xs >= 500 && xs <= 640) need = -114; else if (xs >= 432 && xs <= 500) need = -112; else if (xs >= -45 && xs <= 20) need = -44; else if (xs > 20 && xs <= 140) need = -75; else if (xs > 140 && xs <= 232) need = -140;
+      if (yy < need) pen += need - yy; }
+    const yf = yAt(T); if (yf > -24) pen += yf + 24; if (yf < -56) pen += -56 - yf;
+    if (pen < bestPen) bestPen = pen; if (pen === 0) break;
+  }
+  return T + bestPen * (+process.env.PENW || 0.3);
+}
 function score() {
   const v2 = b.velocity.x ** 2 + b.velocity.y ** 2;
   const Hh = -b.position.y + G * v2 / (2 * g);
-  if (process.env.TW) return +process.env.TW * (b.position.x + 75) / Math.max(-b.velocity.x, +(process.env.CMIN || 5)) - G * Hh + (NOISE ? NOISE * (rnd() - 0.5) : 0);
+  if (process.env.TW) { const rem = (process.env.ANA && b.velocity.x < -6) ? ana(b.position.x, -b.position.y, b.velocity.x, -b.velocity.y, P.jumpReady) : (b.position.x + 75) / Math.max(-b.velocity.x, +(process.env.CMIN || 5)); return +process.env.TW * rem - G * Hh + (NOISE ? NOISE * (rnd() - 0.5) : 0); }
   return -Hh + A * b.position.x + B * b.velocity.x - YW * (-b.position.y) + (NOISE ? NOISE * (rnd() - 0.5) : 0);
 }
 let t = 0;

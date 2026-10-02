@@ -3,7 +3,7 @@ const W=+process.argv[2]||3000, C=+(process.argv[3]||10);
 const S=new Sim(loadLevel(6)),F=mkFast(S),P=S.player,b=P.body;
 function hl(h){const o=[];while(h){o.push(h.t);h=h.prev}return o.reverse()}
 let beam=[{snap:F.save(),hist:null,score:0}];
-for(let t=0;t<141;t++){
+for(let t=0;t<100;t++){
   const kids=new Map();
   for(const st of beam){F.load(st.snap);const canJ=t>=1&&P.jumpReady;
     for(let k=0;k<(canJ?2:1);k++){ if(k)F.load(st.snap); const j=canJ&&k===1; S.step({jump:j}); if(S.dead)continue;
