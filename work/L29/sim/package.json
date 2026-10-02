@@ -1,2 +1,0 @@
-{ "name": "boxel-tas-sim", "version": "1.0.0", "private": true,
-  "dependencies": { "matter-js": "0.19.0", "lodash": "^4.17.21" } }
