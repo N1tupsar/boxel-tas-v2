@@ -29,6 +29,7 @@ function makeScorer(level, n, root, LA = 0) {
   };
 }
 
+let _sd=+(process.env.SEED||1);function rnd(){_sd=(_sd*1664525+1013904223)>>>0;return _sd/4294967296}
 function keyOf(s) {
   const b = s.player.body;
   const ang = ((b.angle % (Math.PI / 2)) + Math.PI / 2) % (Math.PI / 2);
@@ -57,7 +58,7 @@ function beam(level, n, { W = 300, maxTicks = 1500, timeLimitMs = 120000, log = 
         c.hist = acts[k] ? { t, prev: s.hist } : s.hist;
         if (c.finished) { best = { ticks: c.finishTick + 1, jumps: histList(c.hist) }; return best; }
         if (c.dead) continue;
-        c.score = score(c);
+        c.score = score(c) + (process.env.NOISE ? (process.env.NOISE * rnd()) : 0);
         const key = keyOf(c); const pr = kids.get(key);
         if (!pr || pr.score > c.score) kids.set(key, c);
       }
