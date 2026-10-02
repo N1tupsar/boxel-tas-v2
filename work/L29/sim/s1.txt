@@ -1,0 +1,26 @@
+ t 0 best 1864 wp 0 pos -264 48 v 0.00 -0.28 0s
+ t 60 best 1764 wp 0 pos -165 37 v 4.24 -4.44 3s
+ t 120 best 1455 wp 0 pos 143 -41 v 6.50 6.67 11s
+ t 180 best 1071 wp 0 pos 533 64 v 6.50 1.11 21s
+ t 240 best 798 wp 0 pos 818 104 v 4.18 -1.11 30s
+ t 300 best 541 wp 0 pos 1068 48 v 4.18 -2.50 40s
+ t 360 best 278 wp 0 pos 1319 -41 v 4.18 6.67 49s
+ t 420 best 168 wp 1 pos 1433 -16 v -0.11 0.00 62s
+ t 480 best 169 wp 1 pos 1433 -15 v -0.23 -0.08 74s
+ t 540 best 165 wp 1 pos 1437 -16 v 0.09 -0.11 89s
+ t 600 best 160 wp 1 pos 1442 -16 v -0.26 0.01 105s
+ t 660 best 247 wp 1 pos 1350 -40 v -3.15 6.67 116s
+ t 720 best 450 wp 1 pos 1148 -41 v -4.01 6.67 122s
+ t 780 best 563 wp 1 pos 1040 37 v -0.19 -0.00 132s
+ t 840 best 568 wp 1 pos 1035 36 v -0.35 0.56 141s
+ t 900 best 568 wp 1 pos 1029 -28 v 0.45 6.11 151s
+ t 960 best 572 wp 1 pos 1026 -34 v 0.20 6.39 160s
+ t 1020 best 569 wp 1 pos 1036 46 v 0.11 1.41 169s
+ t 1080 best 574 wp 1 pos 1024 -20 v 0.44 6.13 179s
+ t 1140 best 568 wp 1 pos 1030 -28 v 0.54 6.11 189s
+ t 1200 best 574 wp 1 pos 1028 28 v 0.83 4.73 198s
+ t 1260 best 573 wp 1 pos 1028 19 v 0.40 3.33 207s
+ t 1320 best 575 wp 1 pos 1022 -32 v 0.44 6.39 216s
+ t 1380 best 576 wp 1 pos 1026 33 v 0.58 3.06 225s
+ t 1440 best 577 wp 1 pos 1026 36 v 0.47 2.79 233s
+{"level":29,"W":400,"fail":"maxTicks","LA":0}
