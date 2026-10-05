@@ -48,7 +48,7 @@ function beam(level, n, { W = 300, maxTicks = 1500, timeLimitMs = 120000, log = 
     for (const s of beamS) {
       const P = s.player;
       const canJ = t >= 0 && P.mode === 'jump' && P.jumpReady;
-      const acts = canJ ? [true, false] : [false];
+      const acts = (t === 0 && process.env.FORCEJ0) ? [true] : canJ ? [true, false] : [false];
       for (let k = 0; k < acts.length; k++) {
         const c = k === acts.length - 1 ? s : cloneSim(s);
         c.wp = s.wp;
