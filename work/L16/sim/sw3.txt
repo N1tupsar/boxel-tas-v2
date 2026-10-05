@@ -1,2 +1,4 @@
-{"T0":8,"W":1200,"TMIN":4,"fail":true}
-{"T0":18,"W":1200,"TMIN":4,"fail":true}
+{"T0":0,"W":1200,"TMIN":4,"fail":true}
+{"T0":1,"W":1200,"TMIN":4,"fail":true}
+{"T0":2,"W":1200,"TMIN":4,"fail":true}
+{"T0":5,"W":1200,"TMIN":4,"fail":true}

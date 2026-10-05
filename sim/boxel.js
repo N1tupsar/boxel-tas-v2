@@ -82,7 +82,7 @@ class Sim {
       o.setStatic(r.class === 'player' ? r.isStatic : (r.isStatic === undefined ? true : r.isStatic));
       o.body.friction = parseFloat(r.friction === undefined ? 0.1 : r.friction);
       o.text = r.text;
-      if (r.class === 'player') { this.player = o; o.mode = 'jump'; o.jumpReady = false; o.controls = { left: 0, right: 0, acceleration: .5, speed: 4 }; }
+      if (r.class === 'player') { this.player = o; o.mode = 'jump'; o.jumpReady = (opts.startReady !== undefined ? !!opts.startReady : process.env.STARTREADY !== '0'); o.controls = { left: 0, right: 0, acceleration: .5, speed: 4 }; }
       if (+r.position.z === 0) Composite.add(this.engine.world, o.body);
       this.objects.push(o);
     }

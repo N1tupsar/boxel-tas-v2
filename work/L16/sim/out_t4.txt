@@ -1,1 +1,0 @@
-{"level":16,"W":600,"fail":"all dead","t":259,"LA":0}
